@@ -138,29 +138,6 @@
             </div>
         </div>
         <!--Header section end-->
-        <!-- search bar Start -->
-        <div class="search-bar animated slideOutUp">
-            <div class="table">
-                <div class="table-cell">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-8 col-sm-offset-2">
-                                <div class="search-form-wrap">
-                                    <button class="close-search"><i class="mdi mdi-close"></i></button>
-                                    <form action="#">
-                                        <input type="text" placeholder="Search here..." value="Search here..."/>
-                                        <button class="search-button" type="submit">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- search bar End -->
         <!--Room Section Title start-->
         <div class="room-section text-center ptb-80 white_bg">
             <div class="container">
@@ -172,6 +149,16 @@
                     </div>
                 </div>
                 <div class="our-room-show">
+                        <button type="button" id="filterButton" onclick="showFilter();">Filtro</button>
+<!-- Side navigation -->
+                    <div class="sidenav" id="sidenav1">
+                        <button type="button" onclick="closeFilter();" style="float: right;"><img src="./images/icons/x.png"  width="20px" height="20px" alt=""></button>
+                        <br><br>
+                        <p>Çmimi</p>
+                        <div class="slidecontainer">
+                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="our-room-list owl-pagination">
                             <div class="single-room-sapce">
@@ -750,6 +737,7 @@
     <script src="js/plugins.js"></script>
     <!-- Main js file that contents all jQuery plugins activation. -->
     <script src="js/main.js"></script>
+    <script src="js/room-sidenav.js"></script>
 </body>
 
 </html>
