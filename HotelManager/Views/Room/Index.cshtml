@@ -1,0 +1,129 @@
+﻿@using HotelManagement.Models;
+@using HotelManager.Models
+@using System.Linq;
+@model List<Room>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+@if (Session["role"] != null)
+{
+    if ((Role)Session["role"] == Role.Manager || (Role)Session["role"] == Role.Supervisor)
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+
+        <table class="table">
+            <tr>
+                <th>
+                    Numri dhomes
+                </th>
+                <th>
+                    Emertimi
+                </th>
+                <th>
+                    te rritur
+                </th>
+                <th>
+                    femije
+                </th>
+                <th>
+                    cmimi baze
+                </th>
+                <th>
+                    cmimi festiv
+                </th>
+                <th>
+                    indeksi
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.roomNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.roomName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.adultCap)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.childrenCap)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.basePrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.specialPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.luxuryIndex)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.roomNumber }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.roomNumber }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.roomNumber })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+}
+else
+{
+
+    <table class="table">
+        <tr>
+            <th>
+                Numri dhomes
+            </th>
+            <th>
+                Emertimi
+            </th>
+            <th>
+                te rritur
+            </th>
+            <th>
+                femije
+            </th>
+            <th>
+                cmimi baze
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.roomNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.roomName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.adultCap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.childrenCap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.basePrice)
+                </td>
+                <td>
+                    @Html.ActionLink("Rezervo", "Edit", new { id = item.roomNumber })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
