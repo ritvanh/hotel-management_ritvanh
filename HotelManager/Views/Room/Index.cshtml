@@ -12,6 +12,8 @@
 {
     if ((Role)Session["role"] == Role.Manager || (Role)Session["role"] == Role.Supervisor)
     {
+        <br>
+        <br>
         <p>
             @Html.ActionLink("Create New", "Create")
         </p>

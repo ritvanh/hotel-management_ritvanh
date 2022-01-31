@@ -26,7 +26,7 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     @if (Session["role"] != null && (Role)Session["role"] == Role.Supervisor)
                     {
-                        <li>@Html.ActionLink("Register new manager", "Register", "Identity")</li>
+                        <li>@Html.ActionLink("Paneli i punonjesve", "Index", "Identity")</li>
                     }
                     @if (Session["email"] == null)
                     {
@@ -34,7 +34,7 @@
                     }
                     else
                     {
-                <li>@Session["name"]<br>@Html.ActionLink("Shkycu", "Signout", "Identity")</li>
+                <li>@Session["name"]<br>@Html.ActionLink("Shkycu", "Signout", "Identity")<br>@Html.ActionLink("Ndrysho te dhenat tua", "ChangePassword", "Identity")</li>
                     }
 
                 </ul>
@@ -45,7 +45,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year -Hotel Manager</p>
         </footer>
     </div>
 

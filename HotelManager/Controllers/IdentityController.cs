@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HotelManager.Models;
-
+using static HotelManager.Models.Person;
 namespace HotelManager.Controllers
 {
     public class IdentityController : Controller
@@ -12,7 +12,7 @@ namespace HotelManager.Controllers
         // GET: Identity
         public ActionResult Index()
         {
-            return RedirectToAction("Index","Home");
+            return View(Person.GetPersons());
         }
         [HttpGet]
         public ActionResult Login()
@@ -52,10 +52,49 @@ namespace HotelManager.Controllers
                 return View(model);
             }
         }
+        [HttpGet]
+        public ActionResult ChangePassword()
+        {
+            string email = Session["email"].ToString();
+            return View(Person.GetPersonByEmail(email));
+        }
+        [HttpPost]
+        public ActionResult ChangePassword(Person model)
+        {
+            if (Person.Edit(model))
+            {
+                return RedirectToAction("Index", "Room");
+            }
+            else
+            {
+                return View(model);
+            }
+        }
         public ActionResult Signout()
         {
             Session.Clear();
             return RedirectToAction("Login", "Identity");
+        }
+        // GET: Room/Delete/5
+        public ActionResult Delete(string id)
+        {
+            return View(Person.GetPersonByEmail(id));
+        }
+
+        // POST: Room/Delete/5
+        [HttpPost]
+        public ActionResult Delete(string id, Person person)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+                Person.DeletePerson(person.Email);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }
