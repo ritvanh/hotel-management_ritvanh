@@ -1,31 +1,333 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<body>
+    <div class="wrapper">
+        <div class="header-section">
+            <!--Welcome secton-->
+            <div class="welcome-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-5">
+                            <div class="booking-box">
+                                <div class="booking-title">
+                                    <h3>Rezervo tani.</h3>
+                                    <p>Tashmë me një klik, nga pajisja juaj smart.</p>
+                                </div>
+                                <div class="booking-form">
+                                    <form action="#">
+                                        <div class="b-date arrive mb-15">
+                                            <input class="date-picker" type="text" placeholder="Data e mbërritjes">
+                                            <i class="mdi mdi-calendar-text"></i>
+                                        </div>
+                                        <div class="b-date departure mb-15">
+                                            <input class="date-picker" type="text" placeholder="Data e largimit">
+                                            <i class="mdi mdi-calendar-text"></i>
+                                        </div>
+                                        <div class="select-book mb-15">
+                                            <select name="book" class="select-booking">
+                                                <option value="" selected>Të rritur</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                        </div>
+                                        <div class="select-book  mb-30">
+                                            <select name="book" class="select-booking">
+                                                <option value="" selected>Fëmijë</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                        </div>
+                                        <div class="submit-form">
+                                            <button type="submit">Rezervo</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-sm-7">
+                            <div class="welcome-text">
+                                <h2>
+                                    <span>Mirësevini në Hotel</span> <span class="coloring">Chondo</span>
+                                </h2>
+                                <h1 class="cd-headline clip">
+                                    <span class="cd-words-wrapper coloring">
+                                        <b class="is-visible">Lokacion</b>
+                                        <b>Ambient</b>
+                                        <b>Shërbim</b>
+                                    </span>
+                                    <span>PERFEKT</span>
+                                </h1>
+                                <p class="welcome-desc">Tek ne do të gjeni një ambient modern, të ngrohtë dhe shumë familjar, si në shtëpinë tuaj.</p>
+                                <div class="explore">
+                                    <a href="#">SHIKO MË SHUMË</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header section end -->
+    <!--Hotel communities start-->
+    <div class="hotel-cmmunities ptb-100 text-center">
+        <div class="community-bg-opacity"></div>
+        <div class="container">
+            <div class="row">
+                <div class="communities-list">
+                    <div class="single-commmunites">
+                        <h1 class="counter">1300</h1>
+                        <h2>Klientë</h2>
+                    </div>
+                    <div class="single-commmunites">
+                        <h1 class="counter">200</h1>
+                        <h2>Të famshëm</h2>
+                    </div>
+                    <div class="single-commmunites">
+                        <h1 class="counter">850</h1>
+                        <h2>Kthehen</h2>
+                    </div>
+                    <div class="single-commmunites hidden-xs">
+                        <h1 class="counter">1250</h1>
+                        <h2>Klientë të lumtur</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <!--Hotel communities end-->
+    <!--About Section Title start-->
+    <div class="about-section text-center ptb-80 white_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title mb-80">
+                        <h2>Rreth Hotel <span>CHONDO</span></h2>
+                        <p>Hoteli ynë është themeluar në vitin 2015, në kurorën e Alpeve Shqiptare, Tropojë.</p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="about-chondo">
+                        <div class="about-member">
+                            <img src="@Url.Content("/Content/images/about.jpg")" alt="">
+                            <h3>Ritvan Hajdari</h3>
+                            <h5 class="mb-0">Themelues</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <!--About Section end-->
+    <!--Our Room start-->
+    <div class="our-room text-center ptb-80 white-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title mb-75">
+                        <h2><span>Dhomat</span> tona</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="our-room-show">
+                <div class="row">
+                    <div class="carousel-list">
+                        <div class="col-md-4">
+                            <div class="single-room">
+                                <div class="room-img">
+                                    <a href="#"><img src="@Url.Content("/Content/images/room/room1.jpg")" alt=""></a>
+                                </div>
+                                <div class="room-desc">
+                                    <div class="room-name">
+                                        <h3><a href="#">Dhoma Deluxe</a></h3>
+                                    </div>
+                                    <div class="room-rent">
+                                        <h5>€ 200 / <span>Nata</span></h5>
+                                    </div>
+                                    <div class="room-book">
+                                        <a href="#">Rezervo</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-room">
+                                <div class="room-img">
+                                    <a href="#"><img src="@Url.Content("/Content/images/room/room2.jpg")" alt=""></a>
+                                </div>
+                                <div class="room-desc">
+                                    <div class="room-name">
+                                        <h3><a href="#">Dhoma "Basic"</a></h3>
+                                    </div>
+                                    <div class="room-rent">
+                                        <h5>€ 100 / <span>Nata</span></h5>
+                                    </div>
+                                    <div class="room-book">
+                                        <a href="#">Rezervo</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-room">
+                                <div class="room-img">
+                                    <a href="#"><img src="@Url.Content("/Content/images/room/room3.jpg")" alt=""></a>
+                                </div>
+                                <div class="room-desc">
+                                    <div class="room-name">
+                                        <h3><a href="#">Dhoma 3</a></h3>
+                                    </div>
+                                    <div class="room-rent">
+                                        <h5>€ 150 / <span>Nata</span></h5>
+                                    </div>
+                                    <div class="room-book">
+                                        <a href="#">Rezervo</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+    <!--Our room end-->
+    <!--Our services start-->
+    <div class="our-sevices text-center ptb-80 white_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title mb-80">
+                        <h2> <span>Shërbimet</span> tona</h2>
+                        <p>Ne sigurohemi që shërbimet e ofruara të jenë të rangut më të lartë. Kënaqësia juaj është detyra jonë.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="our-services-list">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-services">
+                            <div class="services-img">
+                                <img src="@Url.Content("/Content/images/services/services1.jpg")" alt="">
+                                <div class="services-title">
+                                    <h2>Mëngjesi dhe bufeja</h2>
+                                </div>
+                                <div class="services-hover-desc">
+                                    <div class="services-hover-inner">
+                                        <div class="services-hover-table">
+                                            <div class="services-hover-table-cell">
+                                                <h2>Mëngjesi dhe bufeja</h2>
+                                                <p>Bufeja jonë përfshin ushqime nga më të ndryshmet, nga ato më të hasurat deri te pjatat tradicionale të zonës. Për mëngjesin tashmë ofrohet shërbim dhe në dhomë.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-services">
+                            <div class="services-img">
+                                <img src="@Url.Content("/Content/images/services/services2.jpg")" alt="">
+                                <div class="services-title">
+                                    <h2>Kënd lojërash</h2>
+                                </div>
+                                <div class="services-hover-desc">
+                                    <div class="services-hover-inner">
+                                        <div class="services-hover-table">
+                                            <div class="services-hover-table-cell">
+                                                <h2>Kënd lojërash</h2>
+                                                <p>Fëmijët tuaj mund të luajë, ndërkoh që ju shijoni pamjen e qyetit nga bar-i i Hotel CHONDO.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-services">
+                            <div class="services-img">
+                                <img src="@Url.Content("/Content/images/services/services3.jpg")" alt="">
+                                <div class="services-title">
+                                    <h2>Recepsion 24/7</h2>
+                                </div>
+                                <div class="services-hover-desc">
+                                    <div class="services-hover-inner">
+                                        <div class="services-hover-table">
+                                            <div class="services-hover-table-cell">
+                                                <h2>Recepsion 24/7</h2>
+                                                <p>Stafi ynë është gjithmonë në dispozicionin tuaj për çdo lloj kërkese apo shqetësimi të mundshëm.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-services">
+                            <div class="services-img">
+                                <img src="@Url.Content("/Content/images/services/services4.jpg")" alt="">
+                                <div class="services-title">
+                                    <h2>Giuda</h2>
+                                </div>
+                                <div class="services-hover-desc">
+                                    <div class="services-hover-inner">
+                                        <div class="services-hover-table">
+                                            <div class="services-hover-table-cell">
+                                                <h2>Guida</h2>
+                                                <p>Nëse jeni kurioz rreth bukurive natyrore të Tropojës, stafi yne ju ofron edhe shërbimin e guidës kundrejt tarifave shumë konkuruese.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Our services end-->
+    <!--Our gallery start-->
+    <div class="our-gallery text-center ptb-80 white_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title mb-80">
+                        <h2><span>Galeria</span> jonë</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="our-gallery-photo">
+            <div class="single-gallery">
+                <img src="@Url.Content("/Content/images/gallery/g-1.jpg")" alt="">
+            </div>
+            <div class="single-gallery">
+                <img src="@Url.Content("/Content/images/gallery/g-2.jpg")" alt="">
+            </div>
+            <div class="single-gallery">
+                <img src="@Url.Content("/Content/images/gallery/g-3.jpg")" alt="">
+            </div>
+            <div class="single-gallery">
+                <img src="@Url.Content("/Content/images/gallery/g-4.jpg")" alt="">
+            </div>
+            <div class="single-gallery">
+                <img src="@Url.Content("/Content/images/gallery/g-5.jpg")" alt="">
+            </div>
+        </div>
+    </div>
+    <!--Our gallery end-->
+    </div>
+    @Scripts.Render("~/Content/js")
+</body>

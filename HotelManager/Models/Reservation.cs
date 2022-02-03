@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using HotelManagement;
+using HotelManagement.Models;
 namespace HotelManager.Models
 {
     public class Reservation
@@ -15,27 +16,27 @@ namespace HotelManager.Models
 
         public static bool Add(Reservation model)
         {
-            try
-            {
-
-                using (SqlConnection con = new SqlConnection(Tools.ConnectionString))
-                {
-                    using (SqlCommand cmd = new SqlCommand($"INSERT INTO Reservations(roomNumer,arrivalDate,departionDate,moneyPaid) VALUES({model.roomNumber},'{model.arrivalDate}','{model.departionDate}',{model.moneyPaid})", con))
+                    try
                     {
-                        cmd.CommandType = System.Data.CommandType.Text;
-                        con.Open();
-                        if (cmd.ExecuteNonQuery() == 1)
-                        {
-                            return true;
-                        }
-                        con.Close();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
 
-            }
+                        using (SqlConnection con = new SqlConnection(Tools.ConnectionString))
+                        {
+                            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Reservations VALUES({model.roomNumber},'{model.arrivalDate}','{model.departionDate}',{model.moneyPaid})", con))
+                            {
+                                cmd.CommandType = System.Data.CommandType.Text;
+                                con.Open();
+                                if (cmd.ExecuteNonQuery() == 1)
+                                {
+                                    return true;
+                                }
+                                con.Close();
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
             return false;
         }
         public static List<Reservation> GetReservations()
@@ -70,6 +71,36 @@ namespace HotelManager.Models
 
             }
             return null;
+        }
+        public static bool IsRoomFree(Reservation res)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Tools.ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand($"SELECT * FROM Reservations WHERE roomNumber={res.roomNumber}", con))
+                    {
+                        cmd.CommandType = System.Data.CommandType.Text;
+                        con.Open();
+                        var reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            DateTime arrival = (DateTime)reader["arrivalDate"];
+                            DateTime departion = (DateTime)reader["departionDate"];
+                            if (arrival <= res.departionDate && res.arrivalDate <= departion)
+                            {
+                                return false;
+                            }
+                        }
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return true;
         }
     }
 }

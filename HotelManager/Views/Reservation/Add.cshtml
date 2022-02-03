@@ -6,10 +6,10 @@
 
 <h2>Add</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Reservation</h4>
         <hr />
@@ -25,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.arrivalDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.arrivalDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.arrivalDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
                 @Html.ValidationMessageFor(model => model.arrivalDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -33,7 +33,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.departionDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.departionDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.departionDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
                 @Html.ValidationMessageFor(model => model.departionDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -52,6 +52,15 @@
             </div>
         </div>
     </div>
+    <script>
+$(".form-control datepicker").ready(function () {
+   $(".datepicker").datepicker({
+      dateFormat: "dd-mm-yy",
+      changemonth: true,
+      changeyear: true
+      });
+   });
+    </script>
 }
 
 <div>

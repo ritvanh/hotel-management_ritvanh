@@ -5,52 +5,142 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/bundles/css")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-</head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Rooms", "Index", "Room")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    @if (Session["role"] != null && (Role)Session["role"] == Role.Supervisor)
-                    {
-                        <li>@Html.ActionLink("Paneli i punonjesve", "Index", "Identity")</li>
-                    }
-                    @if (Session["email"] == null)
-                    {
-                        <li>@Html.ActionLink("Login", "Login", "Identity")</li>
-                    }
-                    else
-                    {
-                <li>@Session["name"]<br>@Html.ActionLink("Shkycu", "Signout", "Identity")<br>@Html.ActionLink("Ndrysho te dhenat tua", "ChangePassword", "Identity")</li>
-                    }
-
-                </ul>
+    <!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Pre Loader
+    ============================================ -->
+    <div class="preloader">
+        <div class="loading-center">
+            <div class="loading-center-absolute">
+                <div class="object object_one"></div>
+                <div class="object object_two"></div>
+                <div class="object object_three"></div>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year -Hotel Manager</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-</body>
+    <div class="wrapper">
+        <!--Header section start-->
+        <div class="header-section">
+            <div class="bg-opacity"></div>
+            <div class="top-header sticky-header">
+                <div class="top-header-inner">
+                    <div class="container">
+                        <div class="mgea-full-width">
+                            <div class="row">
+                                <div class="col-md-2 col-sm-2 col-xs-12">
+                                    <div class="logo mt-15">
+                                        <a href="index.html"><img src="@Url.Content("~/Content/images/logo/logo.png")" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-10 col-sm-10 hidden-xs">
+                                    <div class="header-top ptb-10">
+                                        <div class="adresses">
+                                            <div class="phone">
+                                                <p>Tel. <span>+355 44 13 123 </span></p>
+                                            </div>
+                                            <div class="email">
+                                                <p>Email: <span>info@chondohotel.com</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="social-links">
+                                            @if (Session["email"] == null)
+                                            {
+                                                @Html.ActionLink("Login", "Login", "Identity")
+                                            }
+                                            else
+                                            {
+                                                @Session["name"]<br>@Html.ActionLink("Shkycu", "Signout", "Identity")<br>@Html.ActionLink("Ndrysho te dhenat tua", "ChangePassword", "Identity")
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="menu mt-25">
+                                        <div class="menu-list hidden-sm hidden-xs">
+                                            <nav>
+                                                <ul>
+                                                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                                    <li>@Html.ActionLink("Rooms", "Index", "Room")</li>
+                                                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                                    @if (Session["role"] != null && (Role)Session["role"] == Role.Supervisor)
+                                                    {
+                                                        <li>@Html.ActionLink("Paneli i punonjesve", "Index", "Identity")</li>
+                                                    }
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Mobile menu start -->
+                <div class="mobile-menu-area hidden-lg hidden-md">
+                    <div class="container">
+                        <div class="col-md-12">
+                            <nav id="dropdown">
+                                <ul>
+                                    <li><a href="index.html">Kryefaqja</a></li>
+                                    <li><a href="about-us.html">Rreth nesh</a></li>
+                                    <li><a href="gallery.html">Galeria e dhomaave</a></li>
+                                    <li><a href="contact-us.html">Kontakt</a></li>
+                                    <li><a href="#">Kyçu</a></li>
+                                    <li><a href="#">Regjistrohu</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <!-- Mobile menu end -->
+            </div>
+        </div>
+    </div>
+</head>
+@RenderBody()
+<footer>
+    <div class="footer ptb-100">
+        <div class="footer-bg-opacity"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                    <div class="single-footer mt-0">
+                        <div class="logo">
+                            <img src="images/logo/logo.png" alt="">
+                        </div>
+                        <div class="f-adress">
+                            <p><span>Adreasa:</span><br>Agim Ramadani St.<br>Tropojë, Shqipëri</p>
+                        </div>
+                        <div class="hotel-contact">
+                            <p><span>Tel:</span>+355 44 13 123</p>
+                            <p><span>Email:</span>Info@Chondohotel.Com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 hidden-sm col-xs-6">
+                    <div class="single-footer">
+                        <h3>Lidhje të shpejta</h3>
+                        <div class="quick-item">
+                            <ul>
+                                <li><a href="#">Dhomat</a></li>
+                                <li><a href="#">Galeria</a></li>
+                                <li><a href="#">Rezervo</a></li>
+                                <li><a href="#">Regjistrohu</a></li>
+                                <li><a href="#">Kyçu</a></li>
+                                <li><a href="#">Kontakt</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer end -->
+</footer>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
 </html>

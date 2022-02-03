@@ -24,7 +24,7 @@ namespace HotelManager.Controllers
         // GET: Reservation/Create
         public ActionResult Add()
         {
-            return View(new Reservation());
+            return View("Add",new Reservation());
         }
 
         // POST: Reservation/Create
@@ -34,8 +34,14 @@ namespace HotelManager.Controllers
             try
             {
                 // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                if (Reservation.Add(model))
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(model);
+                }
             }
             catch
             {

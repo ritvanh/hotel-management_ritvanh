@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<HotelManager.Models.Reservation>
-
+@using HotelManager.Models
 @{
     ViewBag.Title = "Index";
 }
@@ -21,7 +21,6 @@
             @Html.DisplayNameFor(model => model.moneyPaid)
         </th>
     </tr>
-
 @foreach (var item in Model) {
     <tr>
         <td>
