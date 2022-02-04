@@ -1,6 +1,9 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@Styles.Render("~/bundles/css")
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
 <body>
     <div class="wrapper">
         <div class="header-section">
@@ -74,57 +77,6 @@
         </div>
     </div>
     <!-- Header section end -->
-    <!--Hotel communities start-->
-    <div class="hotel-cmmunities ptb-100 text-center">
-        <div class="community-bg-opacity"></div>
-        <div class="container">
-            <div class="row">
-                <div class="communities-list">
-                    <div class="single-commmunites">
-                        <h1 class="counter">1300</h1>
-                        <h2>Klientë</h2>
-                    </div>
-                    <div class="single-commmunites">
-                        <h1 class="counter">200</h1>
-                        <h2>Të famshëm</h2>
-                    </div>
-                    <div class="single-commmunites">
-                        <h1 class="counter">850</h1>
-                        <h2>Kthehen</h2>
-                    </div>
-                    <div class="single-commmunites hidden-xs">
-                        <h1 class="counter">1250</h1>
-                        <h2>Klientë të lumtur</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <!--Hotel communities end-->
-    <!--About Section Title start-->
-    <div class="about-section text-center ptb-80 white_bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-title mb-80">
-                        <h2>Rreth Hotel <span>CHONDO</span></h2>
-                        <p>Hoteli ynë është themeluar në vitin 2015, në kurorën e Alpeve Shqiptare, Tropojë.</p>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="about-chondo">
-                        <div class="about-member">
-                            <img src="@Url.Content("/Content/images/about.jpg")" alt="">
-                            <h3>Ritvan Hajdari</h3>
-                            <h5 class="mb-0">Themelues</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--About Section end-->
     <!--Our Room start-->
     <div class="our-room text-center ptb-80 white-bg">
         <div class="container">
@@ -330,4 +282,6 @@
     <!--Our gallery end-->
     </div>
     @Scripts.Render("~/Content/js")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </body>
