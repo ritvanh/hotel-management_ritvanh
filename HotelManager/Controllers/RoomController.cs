@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,14 @@ namespace HotelManagement.Controllers
         // GET: Room
         public ActionResult Index()
         {
-            return View(Room.GetRooms());
+            if (TempData["rooms"] == null)
+            {
+                return View(Room.GetRooms());
+            }
+            else
+            {
+                return View(TempData["rooms"]);
+            }
         }
 
         // GET: Room/Details/5
@@ -35,16 +43,23 @@ namespace HotelManagement.Controllers
                 // TODO: Add insert logic here
                 var fileName = "~/Content/images/room/" + Guid.NewGuid() + "_" + room.UploadImage.FileName;
                 room.photoPath = fileName;
-                Room.InsertRoom(room);
-                room.UploadImage.SaveAs(Server.MapPath(fileName));
-                return RedirectToAction("Index");
+                if (Room.InsertRoom(room))
+                {
+                    try
+                    {
+                        room.UploadImage.SaveAs(Server.MapPath(fileName));
+                    }
+                    catch { }
+                    return RedirectToAction("Index");
+                }
             }
             catch
             {
                 return View();
             }
+            return View(room);
         }
-
+        
         // GET: Room/Edit/5
         public ActionResult Edit(int id)
         {
