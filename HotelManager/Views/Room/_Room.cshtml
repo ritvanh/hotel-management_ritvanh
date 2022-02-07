@@ -13,9 +13,19 @@
                     <h5>@Html.DisplayFor(modelItem => Model.basePrice) / <span>Night</span></h5>
                 </div>
                 <div class="room-book">
-                    <a href="@Html.ActionLink("Ndrysho", "Edit", new {id=Model.roomNumber})></a>
-                        <a href="@Html.ActionLink("Shih detaje", "Details", new {id=Model.roomNumber})></a>
-                            <a href="@Html.ActionLink("Fshij", "Delete", new {id=Model.roomNumber})></a>
+                    @if (Session["role"] != null)
+                    {
+                        if ((Role)Session["role"] == Role.Manager || (Role)Session["role"] == Role.Supervisor)
+                        {
+                            @Html.ActionLink("Ndrysho", "Edit", new { id = Model.roomNumber })
+                            @Html.ActionLink("Shih detaje", "Details", new { id = Model.roomNumber })
+                            @Html.ActionLink("Fshij", "Delete", new { id = Model.roomNumber })
+                        }
+                    }
+                    else
+                    {
+                            @Html.ActionLink("Rezervo", "Create")
+                    }
                 </div>
             </div>
         </div>

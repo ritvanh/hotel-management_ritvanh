@@ -33,8 +33,10 @@ namespace HotelManagement.Controllers
             try
             {
                 // TODO: Add insert logic here
+                var fileName = "~/Content/images/room/" + Guid.NewGuid() + "_" + room.UploadImage.FileName;
+                room.photoPath = fileName;
                 Room.InsertRoom(room);
-
+                room.UploadImage.SaveAs(Server.MapPath(fileName));
                 return RedirectToAction("Index");
             }
             catch

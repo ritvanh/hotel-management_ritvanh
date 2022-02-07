@@ -172,13 +172,13 @@ namespace HotelManager.Models
             }
             return null;
         }
-        public static bool DeletePerson(string email)
+        public static bool DeletePerson(int id)
         {
             try
             {
                     using (SqlConnection con = new SqlConnection(Tools.ConnectionString))
                     {
-                        using (SqlCommand cmd = new SqlCommand($"DELETE * FROM Persons WHERE Email='{email}'",con))
+                        using (SqlCommand cmd = new SqlCommand($"DELETE FROM Persons WHERE Id={id}",con))
                         {
                             cmd.CommandType = System.Data.CommandType.Text;
                             con.Open();
@@ -196,6 +196,38 @@ namespace HotelManager.Models
             }
             return false;
         }
+        public static Person GetPersonById(int id)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Tools.ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand($"SELECT * FROM Persons WHERE Id={id}", con))
+                    {
+                        cmd.CommandType = System.Data.CommandType.Text;
+                        con.Open();
+                        var reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            return new Person()
+                            {
+                                Id = (int)reader["Id"],
+                                Name = (string)reader["Name"],
+                                Surname = (string)reader["Surname"],
+                                Email = (string)reader["Email"],
+                                Role = (Role)reader["Role"],
+                                Password = (string)reader["Password"]
+                            };
+                        }
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
 
+            }
+            return null;
+        }
     }
 }

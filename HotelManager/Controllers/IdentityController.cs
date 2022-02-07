@@ -76,9 +76,9 @@ namespace HotelManager.Controllers
             return RedirectToAction("Login", "Identity");
         }
         // GET: Room/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
-            return View(Person.GetPersonByEmail(id));
+            return View(Person.GetPersonById(id));
         }
 
         // POST: Room/Delete/5
@@ -88,7 +88,7 @@ namespace HotelManager.Controllers
             try
             {
                 // TODO: Add delete logic here
-                Person.DeletePerson(person.Email);
+                Person.DeletePerson(person.Id);
                 return RedirectToAction("Index");
             }
             catch

@@ -15,6 +15,8 @@ namespace HotelManagement.Models
         public double basePrice { get; set; }
         public double specialPrice { get; set; }
         public int luxuryIndex { get; set; }
+        public string photoPath { get; set; }
+        public HttpPostedFileBase UploadImage { get; set; }
         public static List<Room> GetRooms()
         {
             try
@@ -56,7 +58,8 @@ namespace HotelManagement.Models
             {
                 using(SqlConnection con = new SqlConnection(Tools.ConnectionString))
                 {
-                    using(SqlCommand cmd = new SqlCommand($"INSERT INTO Rooms VALUES({room.roomNumber},'{room.roomName}',{room.adultCap},{room.childrenCap},{(room.luxuryIndex * 5) * ((room.childrenCap * 0.5) + room.adultCap)},{((room.luxuryIndex+1) * 5) * ((room.childrenCap * 0.5) + room.adultCap)},{room.luxuryIndex})", con))
+                    
+                    using (SqlCommand cmd = new SqlCommand($"INSERT INTO Rooms VALUES({room.roomNumber},'{room.roomName}',{room.adultCap},{room.childrenCap},{(room.luxuryIndex * 5) * ((room.childrenCap * 0.5) + room.adultCap)},{((room.luxuryIndex+1) * 5) * ((room.childrenCap * 0.5) + room.adultCap)},{room.luxuryIndex},'{room.photoPath}')", con))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
                         con.Open();

@@ -16,27 +16,32 @@ namespace HotelManager.Models
 
         public static bool Add(Reservation model)
         {
-                    try
-                    {
+            if (IsRoomFree(model))
+            {
+                try
+                {
 
-                        using (SqlConnection con = new SqlConnection(Tools.ConnectionString))
+                    using (SqlConnection con = new SqlConnection(Tools.ConnectionString))
+                    {
+                        var room = Room.GetRoomByNumber(model.roomNumber);
+                        var money = room.basePrice *( (model.departionDate - model.arrivalDate).TotalDays);
+                        using (SqlCommand cmd = new SqlCommand($"INSERT INTO Reservations VALUES({model.roomNumber},'{model.arrivalDate}','{model.departionDate}',{money})", con))
                         {
-                            using (SqlCommand cmd = new SqlCommand($"INSERT INTO Reservations VALUES({model.roomNumber},'{model.arrivalDate}','{model.departionDate}',{model.moneyPaid})", con))
+                            cmd.CommandType = System.Data.CommandType.Text;
+                            con.Open();
+                            if (cmd.ExecuteNonQuery() == 1)
                             {
-                                cmd.CommandType = System.Data.CommandType.Text;
-                                con.Open();
-                                if (cmd.ExecuteNonQuery() == 1)
-                                {
-                                    return true;
-                                }
-                                con.Close();
+                                return true;
                             }
+                            con.Close();
                         }
                     }
-                    catch (Exception ex)
-                    {
+                }
+                catch (Exception ex)
+                {
 
-                    }
+                }
+            }
             return false;
         }
         public static List<Reservation> GetReservations()

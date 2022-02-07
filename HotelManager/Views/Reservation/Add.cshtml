@@ -9,7 +9,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
     <div class="form-horizontal">
         <h4>Reservation</h4>
         <hr />
@@ -25,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.arrivalDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.arrivalDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.EditorFor(model => model.arrivalDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.arrivalDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -33,36 +33,26 @@
         <div class="form-group">
             @Html.LabelFor(model => model.departionDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.departionDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.EditorFor(model => model.departionDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.departionDate, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.moneyPaid, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.moneyPaid, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.moneyPaid, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
-    <script>
-$(".form-control datepicker").ready(function () {
-   $(".datepicker").datepicker({
-      dateFormat: "dd-mm-yy",
-      changemonth: true,
-      changeyear: true
-      });
-   });
-    </script>
 }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.13.0.js"></script>
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script>
+    $(function () {
+        $(".form-control").datepicker();
+    });
+</script>
