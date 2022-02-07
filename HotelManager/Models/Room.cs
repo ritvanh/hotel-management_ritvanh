@@ -39,7 +39,8 @@ namespace HotelManagement.Models
                                 childrenCap = (int)reader["childrenCap"],
                                 luxuryIndex = (int)reader["luxuryIndex"],
                                 basePrice = Convert.ToDouble(reader["basePrice"]),
-                                specialPrice = Convert.ToDouble(reader["specialPrice"])
+                                specialPrice = Convert.ToDouble(reader["specialPrice"]),
+                                photoPath = (string)reader["photoPath"]
                             });
                         }
                         return rooms;
@@ -120,6 +121,7 @@ namespace HotelManagement.Models
                             room.luxuryIndex = (int)reader["luxuryIndex"];
                             room.basePrice = Convert.ToDouble(reader["basePrice"]);
                             room.specialPrice = Convert.ToDouble(reader["specialPrice"]);
+                            room.photoPath = (string)reader["photoPath"];
                         }
                         con.Close();
                         return room;
