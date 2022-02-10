@@ -140,6 +140,13 @@
     </div>
     <!-- Footer end -->
 </footer>
+@Scripts.Render("~/Content/js")
 @Scripts.Render("~/bundles/jquery")
 @RenderSection("scripts", required: false)
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".date-picker").datepicker();
+    });
+</script>
 </html>

@@ -9,6 +9,7 @@
     <div class="wrapper">
         <div class="header-section">
             <!--Welcome secton-->
+
             <div class="welcome-section">
                 <div class="container">
                     <div class="row">
@@ -30,7 +31,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.arrivalDate, htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-10">
-                                                @Html.EditorFor(model => model.arrivalDate, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.EditorFor(model => model.arrivalDate, new { htmlAttributes = new { @class = "date-picker", @type = "text" } })
                                                 @Html.ValidationMessageFor(model => model.arrivalDate, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -38,7 +39,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.departionDate, htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div class="col-md-10">
-                                                @Html.EditorFor(model => model.departionDate, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.EditorFor(model => model.departionDate, new { htmlAttributes = new { @class = "date-picker" } })
                                                 @Html.ValidationMessageFor(model => model.departionDate, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -301,6 +302,4 @@
     </div>
     <!--Our gallery end-->
     </div>
-    @Scripts.Render("~/Content/js")
-    @Scripts.Render("~/bundles/jquery")
 </body>
