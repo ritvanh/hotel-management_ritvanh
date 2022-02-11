@@ -1,4 +1,10 @@
-﻿@model IEnumerable<HotelManager.Models.Reservation>
+﻿@model IEnumerable<HotelManager.Models.Payment>
+
+@{
+    ViewBag.Title = "Clients";
+}
+
+<h2>Clients</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -9,19 +15,13 @@
             @Html.DisplayNameFor(model => model.reservationReference)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.status)
+            @Html.DisplayNameFor(model => model.cardHolder)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.roomNumber)
+            @Html.DisplayNameFor(model => model.cardNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.arrivalDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.departionDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.moneyPaid)
+            @Html.DisplayNameFor(model => model.expirationDate)
         </th>
         <th></th>
     </tr>
@@ -32,19 +32,13 @@
             @Html.DisplayFor(modelItem => item.reservationReference)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.status)
+            @Html.DisplayFor(modelItem => item.cardHolder)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.roomNumber)
+            @Html.DisplayFor(modelItem => item.cardNumber)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.arrivalDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.departionDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.moneyPaid)
+            @Html.DisplayFor(modelItem => item.expirationDate)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

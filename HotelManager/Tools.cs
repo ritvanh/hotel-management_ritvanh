@@ -8,6 +8,6 @@ namespace HotelManagement
     public class Tools
     {
         public readonly static string ConnectionString =
-            "Data Source=DESKTOP-EFSD8G0\\SQLEXPRESS;Initial Catalog=Hotel;Integrated Security=True";
+            "Data Source=DESKTOP-22EHH6I\\SQLEXPRESS;Initial Catalog=Hotel;Integrated Security=True";
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HotelManagement.Models;
+using HotelManager.Models;
 namespace HotelManagement.Controllers
 {
     public class RoomController : Controller
@@ -103,5 +104,57 @@ namespace HotelManagement.Controllers
                 return View();
             }
         }
+        public ActionResult AddReservation(int id)
+        {
+            Reservation reservation = new Reservation();
+            reservation.roomNumber = id;
+            return View(reservation);
+        }
+        [HttpPost]
+        public ActionResult AddReservation(Reservation model)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                if (Reservation.Add(model))
+                {
+                    return RedirectToAction("PayReservation",new {reference = model.reservationReference});
+                }
+                else
+                {
+                    return View(model);
+                }
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        public ActionResult PayReservation(String reference)
+        {
+            var payment = new Payment();
+            payment.reservationReference = reference;
+            return View(payment);
+        }
+
+        [HttpPost]
+        public ActionResult PayReservation(Payment model)
+        {
+            try {
+                if (Payment.Add(model))
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(model) ;
+                }
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
     }
 }

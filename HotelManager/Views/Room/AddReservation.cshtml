@@ -14,18 +14,12 @@
         <h4>Reservation</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.roomNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.roomNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.roomNumber, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
+        @Html.HiddenFor(model => model.roomNumber)
+        
         <div class="form-group">
             @Html.LabelFor(model => model.arrivalDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.arrivalDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.arrivalDate, new { htmlAttributes = new { @class = "form-control date-picker" } })
                 @Html.ValidationMessageFor(model => model.arrivalDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -33,7 +27,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.departionDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.departionDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.departionDate, new { htmlAttributes = new { @class = "form-control date-picker" } })
                 @Html.ValidationMessageFor(model => model.departionDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -53,6 +47,6 @@
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
 <script>
     $(function () {
-        $(".form-control").datepicker();
+        $(".date-picker").datepicker();
     });
 </script>

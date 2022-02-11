@@ -119,12 +119,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IdentityController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\ReservationFilterController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\PersonAddRequest.cs" />
     <Compile Include="Models\PersonLoginRequest.cs" />
@@ -440,15 +442,16 @@
     <Content Include="Views\Identity\Login.cshtml" />
     <Content Include="Views\Identity\Register.cshtml" />
     <Content Include="Views\Identity\ChangePassword.cshtml" />
-    <Content Include="Views\Reservation\Add.cshtml" />
-    <Content Include="Views\Reservation\Index.cshtml" />
+    <Content Include="Views\Room\AddReservation.cshtml" />
     <Content Include="Views\Identity\Index.cshtml" />
     <Content Include="Views\Identity\Delete.cshtml" />
     <Content Include="Views\Room\_Room.cshtml" />
+    <Content Include="Views\Reservation\Index.cshtml" />
+    <Content Include="Views\Room\PayReservation.cshtml" />
+    <Content Include="Views\Payment\Clients.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ReservationFilter\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

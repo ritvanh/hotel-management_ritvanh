@@ -9,6 +9,8 @@ namespace HotelManager.Models
 {
     public class Reservation
     {
+        public String reservationReference { get; set; }
+        public int status { get; set; }
         public int roomNumber { get; set; }
         public DateTime arrivalDate { get; set; }
         public DateTime departionDate { get; set; }
@@ -25,7 +27,9 @@ namespace HotelManager.Models
                     {
                         var room = Room.GetRoomByNumber(model.roomNumber);
                         var money = room.basePrice *( (model.departionDate - model.arrivalDate).TotalDays);
-                        using (SqlCommand cmd = new SqlCommand($"INSERT INTO Reservations VALUES({model.roomNumber},'{model.arrivalDate}','{model.departionDate}',{money})", con))
+                        var reference = Guid.NewGuid().ToString();
+                        model.reservationReference = reference;
+                        using (SqlCommand cmd = new SqlCommand($"INSERT INTO Reservations VALUES({model.roomNumber},'{model.arrivalDate}','{model.departionDate}',{money},'{model.reservationReference}',{0})", con))
                         {
                             cmd.CommandType = System.Data.CommandType.Text;
                             con.Open();
@@ -63,7 +67,9 @@ namespace HotelManager.Models
                                 roomNumber = (int)reader["roomNumber"],
                                 arrivalDate = (DateTime)reader["arrivalDate"],
                                 departionDate = (DateTime)reader["departionDate"],
-                                moneyPaid = (decimal)reader["moneyPaid"]
+                                moneyPaid = (decimal)reader["moneyPaid"],
+                                reservationReference = (string)reader["reservationReference"],
+                                status = (int)reader["status"]
                             });
                         }
                         return reservations;
@@ -106,6 +112,30 @@ namespace HotelManager.Models
 
             }
             return true;
+        }
+        public static bool UpdateStatus(String reference)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Tools.ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand($"UPDATE Reservations SET status={1} WHERE rservationReference={reference}", con))
+                    {
+                        cmd.CommandType = System.Data.CommandType.Text;
+                        con.Open();
+                        if (cmd.ExecuteNonQuery() == 1)
+                        {
+                            return true;
+                        }
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return false;
         }
     }
 }
