@@ -131,6 +131,7 @@
     <Compile Include="Models\PersonAddRequest.cs" />
     <Compile Include="Models\PersonLoginRequest.cs" />
     <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Models\ReservationDetails.cs" />
     <Compile Include="Models\ReservationFilter.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -446,9 +447,12 @@
     <Content Include="Views\Identity\Index.cshtml" />
     <Content Include="Views\Identity\Delete.cshtml" />
     <Content Include="Views\Room\_Room.cshtml" />
-    <Content Include="Views\Reservation\Index.cshtml" />
     <Content Include="Views\Room\PayReservation.cshtml" />
     <Content Include="Views\Payment\Clients.cshtml" />
+    <Content Include="Views\Room\_RoomBooking.cshtml" />
+    <Content Include="Views\Room\_RoomPayment.cshtml" />
+    <Content Include="Views\Identity\Edit.cshtml" />
+    <Content Include="Views\Reservation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

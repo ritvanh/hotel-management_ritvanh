@@ -9,7 +9,13 @@
     <div class="wrapper">
         <div class="header-section">
             <!--Welcome secton-->
-
+            <style>
+                .carousel-list {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    grid-gap: 20px;
+                }
+            </style>
             <div class="welcome-section">
                 <div class="container">
                     <div class="row">
@@ -24,46 +30,43 @@
                                     @Html.AntiForgeryToken()
 
                                     <div class="form-horizontal">
-                                        
+
                                         <hr />
                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                                         <div class="form-group">
-                                            
-                                            <div class="col-md-10">
-                                                @Html.EditorFor(model => model.arrivalDate, new { htmlAttributes = new { @class = "date-picker", @type = "text" } })
+
+                                            <div class="b-date arrive mb-15">
+                                                @Html.EditorFor(model => model.arrivalDate, new { htmlAttributes = new { @class = "date-picker", @type = "text", @placeholder = "Data e mberritjes", @value = "DAta" } })
                                                 @Html.ValidationMessageFor(model => model.arrivalDate, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            
-                                            <div class="col-md-10">
+
+                                            <div class="b-date arrive mb-15">
                                                 @Html.EditorFor(model => model.departionDate, new { htmlAttributes = new { @class = "date-picker" } })
                                                 @Html.ValidationMessageFor(model => model.departionDate, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            
-                                            <div class="col-md-10">
+
+                                            <div class="b-date arrive mb-15">
                                                 @Html.EditorFor(model => model.adultNum, new { htmlAttributes = new { @class = "form-control" } })
                                                 @Html.ValidationMessageFor(model => model.adultNum, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            
-                                            <div class="col-md-10">
+
+                                            <div class="b-date arrive mb-15">
                                                 @Html.EditorFor(model => model.childNum, new { htmlAttributes = new { @class = "form-control" } })
                                                 @Html.ValidationMessageFor(model => model.childNum, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
-
-                                        <div class="form-group">
-                                            <div class="col-md-offset-2 col-md-10">
-                                                <input type="submit" value="Create" class="btn btn-default" />
-                                            </div>
+                                        <div class="submit-form">
+                                            <button type="submit">shiko opsionet</button>
                                         </div>
                                     </div>
                                 }
@@ -112,7 +115,7 @@
                 <div class="row">
                     <div class="carousel-list">
                         <div class="col-md-4">
-                            <div class="single-room" style="max-width:30%;margin:20px">
+                            <div class="single-room">
                                 <div class="room-img">
                                     <a href="#"><img src="@Url.Content("/Content/images/room/room1.jpg")" alt=""></a>
                                 </div>
@@ -130,7 +133,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="single-room" style="max-width:30%;margin:20px">
+                            <div class="single-room">
                                 <div class="room-img">
                                     <a href="#"><img src="@Url.Content("/Content/images/room/room2.jpg")" alt=""></a>
                                 </div>
@@ -148,7 +151,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="single-room" style="max-width:30%;margin:20px">
+                            <div class="single-room">
                                 <div class="room-img">
                                     <a href="#"><img src="@Url.Content("/Content/images/room/room3.jpg")" alt=""></a>
                                 </div>

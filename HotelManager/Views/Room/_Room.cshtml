@@ -1,31 +1,53 @@
 ﻿@model HotelManagement.Models.Room
     @using HotelManager.Models
+@using HotelManagement.Models
 
-        <div class="single-room mb-80" style="max-width:20%">
-            <div class="room-img">
-                <a href="#"><img src="@Url.Content(Model.photoPath)" width="370" height="256"  alt="Photo"></a>
-            </div>
-            <div class="room-desc">
-                <div class="room-name">
-                    <h3><a href="#">@Html.DisplayFor(modelItem => Model.roomName)</a></h3>
+
+</style>
+        <div class="col-md-4">
+            <div class="single-room">
+                <div class="room-img">
+                    <a href="@Url.Action("Details", new {id=Model.roomNumber})"><img src="@Url.Content(Model.photoPath)" width="370" height="256" alt="Photo"></a>
                 </div>
-                <div class="room-rent">
-                    <h5>$@Html.DisplayFor(modelItem => Model.basePrice) / <span>Night</span></h5>
-                </div>
-                <div class="room-book">
-                    @if (Session["role"] != null)
+                <div class="room-desc">
+                    @if (Room.IsRoomAvailable(Model.roomNumber))
                     {
-                        if ((Role)Session["role"] == Role.Manager || (Role)Session["role"] == Role.Supervisor)
-                        {
-                            @Html.ActionLink("Ndrysho", "Edit", new { id = Model.roomNumber })
-                            @Html.ActionLink("Shih detaje", "Details", new { id = Model.roomNumber })
-                            @Html.ActionLink("Fshij", "Delete", new { id = Model.roomNumber })
-                        }
+                        <span class="alert alert-success" style="padding:0px;float:right">E lire</span>
+                        <br />
                     }
                     else
                     {
-                            @Html.ActionLink("Rezervo", "AddReservation",new {id = Model.roomNumber})
+                        <span class="alert alert-danger" style="padding:0px;float:right">E zene</span>
+                        <br />
                     }
+                    <div class="room-name">
+                        <h3><a href="@Url.Action("Details", new {id=Model.roomNumber})">@Html.DisplayFor(modelItem => Model.roomName)</a></h3>
+                    </div>
+                    <div class="room-rent">
+                        @if (DateTime.Now.Month >= 6 && DateTime.Now.Month <= 9 || DateTime.Now.Month == 12)
+                        {
+                        <h5>$@Html.DisplayFor(modelItem => Model.specialPrice) / <span>Nata</span></h5>
+                        }
+                        else
+                        {
+                        <h5>$@Html.DisplayFor(modelItem => Model.basePrice) / <span>Nata</span></h5>
+                        }
+                    </div>
+                    <div class="room-book">
+                        @if (Session["role"] != null)
+                        {
+                            if ((Role)Session["role"] == Role.Manager || (Role)Session["role"] == Role.Supervisor)
+                            {
+                                @Html.ActionLink("Ndrysho", "Edit", new { id = Model.roomNumber })
+                                @Html.ActionLink("Fshij", "Delete", new { id = Model.roomNumber })
+                               
+                            }
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Rezervo", "AddReservation", new { id = Model.roomNumber })
+                        }
+                    </div>
                 </div>
             </div>
         </div>

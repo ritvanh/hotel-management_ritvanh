@@ -70,6 +70,23 @@ namespace HotelManager.Controllers
                 return View(model);
             }
         }
+        public ActionResult Edit(int id)
+        {
+            var person = Person.GetPersonById(id);
+            return View(person);
+        }
+        [HttpPost]
+        public ActionResult Edit(Person person)
+        {
+            if (Person.UpdatePerson(person))
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(person);
+            }
+        }
         public ActionResult Signout()
         {
             Session.Clear();

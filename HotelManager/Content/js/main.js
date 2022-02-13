@@ -256,7 +256,7 @@ NOTE: If you have any note put here.
 	};
     
 })
-(jQuery);
+
 
 
 

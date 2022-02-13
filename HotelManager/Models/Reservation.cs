@@ -26,7 +26,16 @@ namespace HotelManager.Models
                     using (SqlConnection con = new SqlConnection(Tools.ConnectionString))
                     {
                         var room = Room.GetRoomByNumber(model.roomNumber);
-                        var money = room.basePrice *( (model.departionDate - model.arrivalDate).TotalDays);
+                        double money;
+                        if (model.arrivalDate.Month >= 6 && model.arrivalDate.Month <= 9 || model.arrivalDate.Month == 12)
+                        {
+                            money = room.specialPrice * ((model.departionDate - model.arrivalDate).TotalDays);
+
+                        }
+                        else
+                        {
+                            money = room.basePrice * ((model.departionDate - model.arrivalDate).TotalDays);
+                        }
                         var reference = Guid.NewGuid().ToString();
                         model.reservationReference = reference;
                         using (SqlCommand cmd = new SqlCommand($"INSERT INTO Reservations VALUES({model.roomNumber},'{model.arrivalDate}','{model.departionDate}',{money},'{model.reservationReference}',{0})", con))
@@ -65,7 +74,7 @@ namespace HotelManager.Models
                             reservations.Add(new Reservation()
                             {
                                 roomNumber = (int)reader["roomNumber"],
-                                arrivalDate = (DateTime)reader["arrivalDate"],
+                                arrivalDate = ((DateTime)reader["arrivalDate"]).Date,
                                 departionDate = (DateTime)reader["departionDate"],
                                 moneyPaid = (decimal)reader["moneyPaid"],
                                 reservationReference = (string)reader["reservationReference"],
@@ -119,7 +128,7 @@ namespace HotelManager.Models
             {
                 using (SqlConnection con = new SqlConnection(Tools.ConnectionString))
                 {
-                    using (SqlCommand cmd = new SqlCommand($"UPDATE Reservations SET status={1} WHERE rservationReference={reference}", con))
+                    using (SqlCommand cmd = new SqlCommand($"UPDATE Reservations SET status=1 WHERE reservationReference='{reference}'", con))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
                         con.Open();
@@ -136,6 +145,39 @@ namespace HotelManager.Models
 
             }
             return false;
+        }
+        public static Reservation GetReservationByReference(String reference)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Tools.ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand($"SELECT * FROM Reservations WHERE reservationReference='{reference}'", con))
+                    {
+                        cmd.CommandType = System.Data.CommandType.Text;
+                        con.Open();
+                        var reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            return new Reservation()
+                            {
+                                roomNumber = (int)reader["roomNumber"],
+                                arrivalDate = (DateTime)reader["arrivalDate"],
+                                departionDate = (DateTime)reader["departionDate"],
+                                moneyPaid = (decimal)reader["moneyPaid"],
+                                reservationReference = (string)reader["reservationReference"],
+                                status = (int)reader["status"]
+                            };
+                        }
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return null;
         }
     }
 }

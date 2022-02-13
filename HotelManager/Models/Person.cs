@@ -229,5 +229,25 @@ namespace HotelManager.Models
             }
             return null;
         }
+        public static bool UpdatePerson(Person model)
+        {
+            try
+            {
+                using(SqlConnection con = new SqlConnection(Tools.ConnectionString))
+                {
+                    using(SqlCommand cmd = new SqlCommand($"UPDATE Persons SET Name='{model.Name}',Surname='{model.Surname}',Email='{model.Email}',Role={(int)model.Role},Password='{model.Password}' WHERE Id={model.Id}", con))
+                    {
+                        cmd.CommandType = System.Data.CommandType.Text;
+                        con.Open();
+                        if (cmd.ExecuteNonQuery() == 1) { return true; }
+                        con.Close();
+                    }
+                }
+            }catch (Exception ex)
+            {
+                return false;
+            }
+            return false;
+        }
     }
 }

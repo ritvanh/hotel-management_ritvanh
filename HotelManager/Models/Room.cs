@@ -157,5 +157,35 @@ namespace HotelManagement.Models
             }
             return false;
         }
+        public static bool IsRoomAvailable(int room)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Tools.ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand($"SELECT * FROM Reservations WHERE roomNumber={room}", con))
+                    {
+                        cmd.CommandType = System.Data.CommandType.Text;
+                        con.Open();
+                        var reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            DateTime arrival = (DateTime)reader["arrivalDate"];
+                            DateTime departion = (DateTime)reader["departionDate"];
+                            if (arrival<=DateTime.Now&&departion>=DateTime.Now)
+                            {
+                                return false;
+                            }
+                        }
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return true;
+        }
     }
 }

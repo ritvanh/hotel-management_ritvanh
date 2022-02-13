@@ -143,6 +143,7 @@ namespace HotelManagement.Controllers
             try {
                 if (Payment.Add(model))
                 {
+                    Reservation.UpdateStatus(model.reservationReference);
                     return RedirectToAction("Index");
                 }
                 else

@@ -1,5 +1,5 @@
 ﻿@model HotelManager.Models.Reservation
-
+@using HotelManagement.Models
 @{
     ViewBag.Title = "Add";
 }
@@ -13,9 +13,17 @@
     <div class="form-horizontal">
         <h4>Reservation</h4>
         <hr />
+        <div class="our-room-show">
+            <div class="row">
+                <div class="carousel-list">
+                    @Html.Partial("_RoomBooking", Room.GetRoomByNumber(Model.roomNumber))
+                </div>
+            </div>
+        </div>
+       
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.roomNumber)
-        
+
         <div class="form-group">
             @Html.LabelFor(model => model.arrivalDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

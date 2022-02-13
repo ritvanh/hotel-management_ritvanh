@@ -1,0 +1,14 @@
+﻿@model HotelManagement.Models.Room
+@using HotelManager.Models
+<div class="single-room-details fix">
+    <div class="room-img">
+        <img src="@Url.Content(Model.photoPath)" alt="">
+    </div>
+    <div class="single-room-details pl-50">
+        <h3 class="s_room_title">@Html.DisplayFor(modelItem => Model.roomName)</h3>
+        <div class="room_price">
+            <h4>Cmimi</h4>
+            <h5>$@Html.DisplayFor(modelItem => Model.basePrice) <span>/Nata</span></h5>
+        </div>
+    </div>
+</div>

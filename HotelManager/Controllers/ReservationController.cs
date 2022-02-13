@@ -12,7 +12,7 @@ namespace HotelManager.Controllers
         // GET: Reservation
         public ActionResult Index()
         {
-            return View(Reservation.GetReservations());
+            return View(ReservationDetails.GetFullReservations());
         }
 
         // GET: Reservation/Details/5

@@ -6,15 +6,37 @@
 @{
     ViewBag.Title = "View";
 }
-@if (Session["role"] != null)
-{
-    if ((Role)Session["role"] == Role.Manager || (Role)Session["role"] == Role.Supervisor)
-    {
-        @Html.ActionLink("Create New", "Create")
+<style>
+    .carousel-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 20px;
     }
-}
-    <h2>View</h2>
-    @foreach (var item in Model)
-    {
-        @Html.Partial("_Room", item);
-    }
+</style>
+<div class="wrapper">
+    <div class="our-room text-center ptb-80 white-bg">
+        <div class="container">
+            @if (Session["role"] != null)
+            {
+                if ((Role)Session["role"] == Role.Manager || (Role)Session["role"] == Role.Supervisor)
+                {
+                    <div class="btn btn-secondary btn-lg active" style="background-color:gray;padding:10px">
+                        <input type="button" class="btn btn-info" value="Krijo Dhome" onclick="location.href='@Url.Action("Create", "Room")'" />
+                    </div>
+                }
+            }
+            <h2>View</h2>
+
+            <div class="our-room-show">
+                <div class="row">
+                    <div class="carousel-list">
+                        @foreach (var item in Model)
+                        {
+                            @Html.Partial("_Room", item);
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,21 +1,15 @@
 ﻿@model HotelManager.Models.Payment
-
-@using (Html.BeginForm()) 
+@using HotelManager.Models
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Payment</h4>
         <hr />
+        @Html.Partial("_RoomPayment",Reservation.GetReservationByReference(Model.reservationReference))
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.reservationReference, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.reservationReference, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.reservationReference, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
+        @Html.HiddenFor(model => model.reservationReference)
         <div class="form-group">
             @Html.LabelFor(model => model.cardHolder, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
