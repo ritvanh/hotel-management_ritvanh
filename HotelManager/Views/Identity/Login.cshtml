@@ -1,10 +1,10 @@
 ﻿@model HotelManager.Models.PersonLoginRequest
 
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Kycu";
 }
 
-<h2>Login</h2>
+<h2>Kycu</h2>
 
 @using (Html.BeginForm()) 
 {
@@ -12,7 +12,6 @@
     if (Session["email"] == null)
     {
     <div class="form-horizontal">
-        <h4>PersonLoginRequest</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -33,17 +32,20 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Sign in" class="btn btn-default" />
+                <input type="submit" value="Kycu" class="btn btn-info" />
             </div>
         </div>
+        @if (ViewBag.ErrorMessage != null) { 
+            <h4 class="alert alert-danger" style="text-align:center">@ViewBag.ErrorMessage</h4>
+        }
     </div>
-                }
-                else
-                {
+    }
+    else
+    {
                     <div class="alert alert-warning">Jeni i kycur tashme</div>
                 }
     }
 
 <div>
-    @Html.ActionLink("Kryefaqja", "Index")
+    <input type="button" class="btn btn-info" value="Ktheu ne kryefaqe" onclick="location.href='@Url.Action("Index", "Home")'" />
 </div>

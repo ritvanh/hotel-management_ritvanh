@@ -17,9 +17,17 @@ namespace HotelManagement.Controllers
             {
                 return View(Room.GetRooms());
             }
-            else
+            else if(TempData["rooms"] != null)
             {
                 return View(TempData["rooms"]);
+            }
+            else if(TempData["rooms"] == null)
+            {
+                return View(new { message = "Nuk ka asnje dhome sipas specifikimeve" });
+            }
+            else
+            {
+                return View();
             }
         }
 

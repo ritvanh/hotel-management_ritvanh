@@ -15,11 +15,6 @@ namespace HotelManager.Controllers
             return View(ReservationDetails.GetFullReservations());
         }
 
-        // GET: Reservation/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: Reservation/Create
         public ActionResult Add()

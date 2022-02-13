@@ -5,6 +5,8 @@ using System.Data.SqlClient;
 using System.Web;
 using HotelManagement;
 using HotelManager;
+using System.ComponentModel.DataAnnotations;
+
 namespace HotelManager.Models
 {
     public enum Role : byte
@@ -16,10 +18,19 @@ namespace HotelManager.Models
     public class Person
     {
         public int Id { get; set; }
+        [Required]
+        [Display(Name = "Emri")]
         public string Name { get; set; }
+        [Required]
+        [Display(Name = "Mbiemri")]
         public string Surname { get; set; }
+        [Required]
         public string Email { get; set; }
+        [Required]
+        [Display(Name = "Roli")]
         public Role Role { get; set; }
+        [Required]
+        [Display(Name = "Fjalekalimi")]
         public string Password { get; set; }
         public static Person Login(PersonLoginRequest model)
         {

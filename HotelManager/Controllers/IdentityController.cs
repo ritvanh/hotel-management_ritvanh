@@ -12,7 +12,14 @@ namespace HotelManager.Controllers
         // GET: Identity
         public ActionResult Index()
         {
-            return View(Person.GetPersons());
+            if (Person.GetPersons() != null) {
+                return View(Person.GetPersons());
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Nuk ka asnje perdorues te regjistruar, kontaktoni pergjegjesin e IT.";
+                return View(ViewBag.ErrorMessage);
+            }
         }
         [HttpGet]
         public ActionResult Login()
@@ -22,16 +29,25 @@ namespace HotelManager.Controllers
         [HttpPost]
         public ActionResult Login(PersonLoginRequest model)
         {
-            var loggedUser = Person.Login(model);
-            if (loggedUser != null)
+            if (model.Email != null && model.Password!=null)
             {
-                Session["email"] = loggedUser.Email;
-                Session["name"] = loggedUser.Name + " " + loggedUser.Surname;
-                Session["role"] = (Role)loggedUser.Role;
-                return RedirectToAction("Index","Home");
+                var loggedUser = Person.Login(model);
+                if (loggedUser != null)
+                {
+                    Session["email"] = loggedUser.Email;
+                    Session["name"] = loggedUser.Name + " " + loggedUser.Surname;
+                    Session["role"] = (Role)loggedUser.Role;
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Te dhena te gabuara";
+                    return View(model);
+                }
             }
             else
             {
+                ViewBag.ErrorMessage = "Futni te dhenat";
                 return View(model);
             }
         }
@@ -43,20 +59,33 @@ namespace HotelManager.Controllers
         [HttpPost]
         public ActionResult Register(PersonAddRequest model)
         {
-            if (Person.Register(model))
+            if (Person.GetPersonByEmail(model.Email) == null)
             {
-                return RedirectToAction("Login", "Identity");
+                if (Person.Register(model))
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return View(model);
+                }
             }
             else
             {
+                ViewBag.ErrorMessage = "Ekziston nje tjeter perdorues me kete email.";
                 return View(model);
             }
         }
         [HttpGet]
         public ActionResult ChangePassword()
         {
-            string email = Session["email"].ToString();
-            return View(Person.GetPersonByEmail(email));
+            try
+            {
+                return View(Person.GetPersonByEmail(Session["email"].ToString()));
+            }catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         [HttpPost]
         public ActionResult ChangePassword(Person model)
@@ -72,8 +101,24 @@ namespace HotelManager.Controllers
         }
         public ActionResult Edit(int id)
         {
-            var person = Person.GetPersonById(id);
-            return View(person);
+            if (Person.GetPersonById(id) == null)
+            {
+                var person = Person.GetPersonById(id);
+                if (person == null)
+                {
+                    ViewBag.ErrorMessage = "Ky perdorues nuk ekziston me.";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(person);
+                }
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Ky perdorues nuk ekziston me.";
+                return RedirectToAction("Index");
+            }
         }
         [HttpPost]
         public ActionResult Edit(Person person)
@@ -95,7 +140,14 @@ namespace HotelManager.Controllers
         // GET: Room/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(Person.GetPersonById(id));
+            if (Person.GetPersonById(id) != null && id!=null)
+            {
+                return View(Person.GetPersonById(id));
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: Room/Delete/5
@@ -104,9 +156,16 @@ namespace HotelManager.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-                Person.DeletePerson(person.Id);
-                return RedirectToAction("Index");
+                // TODO: Add delete logic hereif
+                if (person != null && id !=null)
+                {
+                    Person.DeletePerson(person.Id);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
             catch
             {

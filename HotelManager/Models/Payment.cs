@@ -5,14 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using HotelManagement;
+using System.ComponentModel.DataAnnotations;
 
 namespace HotelManager.Models
 {
     public class Payment
     {
+        [Display(Name = "Referenca")]
         public String reservationReference { get; set; }
+        [Display(Name = "Mbartesi")]
+        [Required(ErrorMessage = "Kerkohet vlere patjeter per poseduesin")]
         public String cardHolder { get; set; }
+        [Display(Name = "Numri i kartes")]
+        [Required]
         public String cardNumber { get; set; }
+        [Display(Name = "Data skadences")]
+        [Required]
         public String expirationDate { get; set; }
         public static bool Add(Payment model)
         {
@@ -53,13 +61,14 @@ namespace HotelManager.Models
                         var reader = cmd.ExecuteReader();
                         while (reader.Read())
                         {
-                            pays.Add(new Payment()
+                            var p = new Payment()
                             {
                                 reservationReference = (String)reader["reservationReference"],
                                 cardHolder = (String)reader["cardHolder"],
                                 cardNumber = (String)reader["cardNumber"],
                                 expirationDate = (String)reader["expirationDate"]
-                            });
+                            };
+                            if (!pays.Contains(p)) { pays.Add(p); }
                         }
                         return pays;
                         con.Close();

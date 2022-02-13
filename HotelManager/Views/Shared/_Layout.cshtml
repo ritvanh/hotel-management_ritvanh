@@ -62,12 +62,12 @@
                                         <div class="menu-list hidden-sm hidden-xs">
                                             <nav>
                                                 <ul>
-                                                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                                                    <li>@Html.ActionLink("Rooms", "Index", "Room")</li>
-                                                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                                    <li>@Html.ActionLink("Kryefaqe", "Index", "Home")</li>
+                                                    <li>@Html.ActionLink("Dhomat", "Index", "Room")</li>
+                                                    <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                                                     @if (Session["role"] != null && (Role)Session["role"] == Role.Supervisor)
                                                     {
-                                                        <li>@Html.ActionLink("Paneli i punonjesve", "Index", "Identity")</li>
+                                                        <li>@Html.ActionLink("Punonjes", "Index", "Identity")</li>
                                                     }
                                                 </ul>
                                             </nav>

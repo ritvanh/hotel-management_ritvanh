@@ -1,51 +1,60 @@
 ﻿@model IEnumerable<HotelManager.Models.Payment>
-
+@using HotelManager.Models
 @{
     ViewBag.Title = "Clients";
 }
 
 <h2>Clients</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.reservationReference)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cardHolder)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cardNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.expirationDate)
-        </th>
-        <th></th>
-    </tr>
+@if (Session["email"] != null)
+{
+    if ((Role)Session["role"] == Role.Supervisor)
+    {
+        if (Request.QueryString["message"] != null)
+        {
+            <div class="alert alert-info">@Request.QueryString["message"]</div>
+        }
+        if (Model != null)
+        {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.cardHolder)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.cardNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.expirationDate)
+                </th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.reservationReference)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cardHolder)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cardNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.expirationDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cardHolder)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cardNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.expirationDate)
+                    </td>
+                </tr>
+            }
+
+
+
+
+        </table>
+        }
+    }
+    else
+    {
+        <div class="alert alert-danger">Ju nuk e keni kete privilegj</div>}
 }
-
-</table>
+else
+{
+    <div class="alert alert-danger">Duhet te kyceni si fillim</div>
+}

@@ -76,7 +76,7 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default" />
+                        <input type="submit" value="Ruaj" class="btn btn-info" />
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@ else
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <input type="button" class="btn btn-info" value="Ktheu te lista" onclick="location.href='@Url.Action("Index", "Room")'" />
 </div>
 
 @section Scripts {

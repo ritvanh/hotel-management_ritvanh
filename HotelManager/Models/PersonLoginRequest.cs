@@ -10,7 +10,9 @@ namespace HotelManager.Models
     {
         [Required]
         [EmailAddress]
+        [Display(Name ="EMail")]
         public string Email { get; set; }
+        [Display(Name ="Fjalekalimi")]
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }

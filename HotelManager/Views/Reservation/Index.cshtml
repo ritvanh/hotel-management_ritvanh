@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <input type="text" id="cardholder" class="form-control" placeholder="Emri i klientit..." />
+    <input type="text" id="room" class="form-control" placeholder="Numri i dhomes..."/>
 </p>
 <table class="table">
     <tr>
@@ -61,3 +61,34 @@
 }
 
 </table>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $("#room").on("keyup", function () {
+        var txtenter = $(this).val();
+        $("table tr").each(function (results) {
+            if (results !== 0) {
+                var id = $(this).find("td:nth-child(2)").text();
+                if (id.indexOf(txtenter) !== 0 && id.toLowerCase().indexOf(txtenter.toLowerCase()) < 0) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            }
+        });
+    });
+    $("#cardholder").on("keyup", function () {
+        var txtenter = $(this).val();
+        $("table tr").each(function (results) {
+            if (results !== 0) {
+                var id = $(this).find("td:nth-child(6)").text();
+                if (id.indexOf(txtenter) !== 0 && id.toLowerCase().indexOf(txtenter.toLowerCase()) < 0) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            }
+        });
+    }); 
+</script>

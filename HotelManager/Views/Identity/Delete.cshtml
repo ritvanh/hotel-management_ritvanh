@@ -1,56 +1,70 @@
 ﻿@model HotelManager.Models.Person
-
+@using HotelManager.Models
 @{
     ViewBag.Title = "Delete";
 }
+@if (Session["email"] != null)
+{
+    if ((Role)Session["role"] == Role.Supervisor)
+    {
+        <h2>Delete</h2>
 
-<h2>Delete</h2>
+        <h3>Are you sure you want to delete this?</h3>
+        <div>
+            <h4>Person</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Person</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Surname)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Surname)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Surname)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Surname)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Password)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Password)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
+            </dl>
 
-    </dl>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                <div class="form-actions no-color">
+                    <input type="submit" class="btn btn-info" value="Fshij" class="btn btn-default" />
+                    <input type="button" class="btn btn-info" value="Ktheu te lista" onclick="location.href='@Url.Action("Index", "Identity")'" />
+                </div>
+            }
         </div>
     }
-</div>
+    else
+    {
+        <div class="alert alert-danger">Ju nuk e keni kete privilegj</div>
+    }
+}
+else
+{
+    <div class="alert alert-danger">Duhet te kyceni si fillim</div>
+}

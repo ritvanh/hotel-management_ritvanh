@@ -4,7 +4,7 @@
 @model List<Room>
 
 @{
-    ViewBag.Title = "View";
+    ViewBag.Title = "Dhomat";
 }
 <style>
     .carousel-list {
@@ -13,6 +13,8 @@
         grid-gap: 20px;
     }
 </style>
+@if (Model != null)
+{
 <div class="wrapper">
     <div class="our-room text-center ptb-80 white-bg">
         <div class="container">
@@ -25,8 +27,11 @@
                     </div>
                 }
             }
-            <h2>View</h2>
-
+            <h2>Dhomat tona</h2>
+            @if (Request.QueryString["message"] != null)
+            {
+            <div class="alert alert-info">@Request.QueryString["message"]</div>
+            }
             <div class="our-room-show">
                 <div class="row">
                     <div class="carousel-list">
@@ -34,9 +39,17 @@
                         {
                             @Html.Partial("_Room", item);
                         }
+
+
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+            }
+            else {
+            <h4 class="alert alert-danger" style="text-align:center">Nuk ka asnje dhome per momentin.</h4>
+}
+                   

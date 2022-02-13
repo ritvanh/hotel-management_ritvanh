@@ -2,10 +2,10 @@
 @using HotelManager.Models
 
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Regjistro";
 }
 
-<h2>Register</h2>
+<h2>Regjistro</h2>
 
 @using (Html.BeginForm())
 {
@@ -13,8 +13,11 @@
     {
         if ((Role)Session["role"] == Role.Supervisor)
         {
+            if (Request.QueryString["message"] != null)
+            {
+                <div class="alert alert-info">@Request.QueryString["message"]</div>
+            }
             <div class="form-horizontal">
-                <h4>PersonAddRequest</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -75,6 +78,10 @@
                     </div>
                 </div>
             </div>
+            if (ViewBag.ErrorMessage != null)
+            {
+                <div class="alert alert-danger" style="text-align:center">@ViewBag.ErrorMessage</div>
+            }
         }
         else
         {
