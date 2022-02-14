@@ -125,13 +125,13 @@ namespace HotelManager.Models
             }
             return false;
         }
-        public static bool Edit(Person model)
+        public static bool Edit(String email,String password)
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(Tools.ConnectionString))
+                using(SqlConnection con = new SqlConnection(Tools.ConnectionString))
                 {
-                    using (SqlCommand cmd = new SqlCommand($"UPDATE Persons SET Password='{model.Password}' WHERE Email={model.Email}", con))
+                    using(SqlCommand cmd = new SqlCommand($"UPDATE Persons SET Password='{password}' WHERE Email='{email}'", con))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
                         con.Open();
@@ -142,8 +142,7 @@ namespace HotelManager.Models
                         con.Close();
                     }
                 }
-            }
-            catch (Exception ex)
+            }catch (Exception ex)
             {
 
             }

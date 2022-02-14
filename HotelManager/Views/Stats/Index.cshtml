@@ -1,0 +1,75 @@
+﻿@model HotelManager.Models.Stats
+@using HotelManager.Models
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (Session["email"] != null)
+{
+    if ((Role)Session["role"] == Role.Supervisor)
+    {
+        <div style="width:300px;margin:auto;font-size:14px">
+            <h4>Statistika</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Numri i dhomave ne webfaqe
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TotalRoomNumber)
+                </dd>
+
+                <dt>
+                    Dhoma te zena per momentin
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.BusyRoomNumber)
+                </dd>
+
+                <dt>
+                    Kliente aktiv
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.LiveClients)
+                </dd>
+
+                <dt>
+                    Kliente ne total nga webfaqja
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TotalClients)
+                </dd>
+
+                <dt>
+                    Para te xhiruara nga webfaqja
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MoneyEarned)
+                </dd>
+
+                <dt>
+                    Rezervime nga webfaqja
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Reservations)
+                </dd>
+
+            </dl>
+        </div>
+    }
+    else
+    {
+        <h3 class="alert alert-danger" style="text-align:center;">Ju nuk keni akses ketu</h3>
+    }
+}
+else
+{
+    <h3 class="alert alert-danger" style="text-align:center;">Ju nuk keni akses ketu</h3>
+}
+

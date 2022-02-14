@@ -2,6 +2,8 @@
     ViewBag.Title = "Home Page";
 }
 @model HotelManager.Models.ReservationFilter
+    @using HotelManager.Models
+@using HotelManagement.Models
 @Styles.Render("~/bundles/css")
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
@@ -168,6 +170,7 @@
                                 </div>
                             </div>
                         </div>
+                        @Html.Partial("_RoomShared",Room.GetRooms()[0])
                     </div>
                 </div>
             </div>

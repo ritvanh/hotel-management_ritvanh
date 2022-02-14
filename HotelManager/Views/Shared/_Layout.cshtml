@@ -69,6 +69,7 @@
                                                     @if (Session["role"] != null && (Role)Session["role"] == Role.Supervisor)
                                                     {
                                                         <li>@Html.ActionLink("Punonjes", "Index", "Identity")</li>
+                                                        <li>@Html.ActionLink("Statistika","Index","stats")</li>
                                                     }
                                                     @if (Session["role"] != null)
                                                     {

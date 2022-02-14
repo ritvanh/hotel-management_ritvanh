@@ -3,18 +3,17 @@
 @{
     ViewBag.Title = "View";
 }
+<div style="width:400px;margin:auto;">
+<h2>Dhoma e selektuar</h2>
 
-<h2>View</h2>
-@if (Session["role"] != null)
-{
-    if ((Role)Session["role"] == Role.Manager || (Role)Session["role"] == Role.Supervisor)
-    {
+<div >
+    <img src="@Url.Content(Model.photoPath)" width="370" height="256" alt="Photo">
+</div>
         <div>
-            <h4>Room</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.roomNumber)
+                    Numri i dhomes
                 </dt>
 
                 <dd>
@@ -22,7 +21,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.roomName)
+                    Emertimi
                 </dt>
 
                 <dd>
@@ -30,7 +29,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.adultCap)
+                    Kapaciteti per te rritur
                 </dt>
 
                 <dd>
@@ -38,7 +37,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.childrenCap)
+                    Kapaciteti per femije
                 </dt>
 
                 <dd>
@@ -46,38 +45,14 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.basePrice)
+                    Cmimi
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.basePrice)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.specialPrice)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.specialPrice)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.luxuryIndex)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.luxuryIndex)
+                    $@Html.DisplayFor(model => model.basePrice)
                 </dd>
 
             </dl>
         </div>
-        <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.roomNumber }) |
-            @Html.ActionLink("Back to List", "Index")
-        </p>
-    }
-}
-else
-{
-    <div class="alert alert-danger">Ju nuk keni akses ketu!</div>
-}
+
+    </div>

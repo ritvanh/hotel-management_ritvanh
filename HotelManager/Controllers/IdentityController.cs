@@ -79,24 +79,32 @@ namespace HotelManager.Controllers
         [HttpGet]
         public ActionResult ChangePassword()
         {
+            return View(new PersonResetPasswordRequest());
+        }
+        [HttpPost]
+        public ActionResult ChangePassword(PersonResetPasswordRequest model)
+        {
             try
             {
-                return View(Person.GetPersonByEmail(Session["email"].ToString()));
+                var email = Session["email"].ToString();
+                var user = Person.GetPersonByEmail(email);
+                if(model.Password != user.Password)
+                {
+                    ViewBag.ErrorMessage = "Fjalekalim aktual i gabuar!";
+                    return View(model);
+                }else if(model.Password == user.Password && model.NewPassword != model.ConfirmPassword)
+                {
+                    ViewBag.ErrorMessage = "Fjalkalimet nuk perputhen!";
+                    return View(model);
+                }
+                else
+                {
+                    Person.Edit(email, model.NewPassword);
+                    return RedirectToAction("Index", "Home");
+                }
             }catch (Exception ex)
             {
                 return RedirectToAction("Index", "Home");
-            }
-        }
-        [HttpPost]
-        public ActionResult ChangePassword(Person model)
-        {
-            if (Person.Edit(model))
-            {
-                return RedirectToAction("Index", "Room");
-            }
-            else
-            {
-                return View(model);
             }
         }
         public ActionResult Edit(int id)
