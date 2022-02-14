@@ -46,6 +46,7 @@
                                             <div class="email">
                                                 <p>Email: <span>info@chondohotel.com</span></p>
                                             </div>
+
                                         </div>
                                         <div class="social-links">
                                             @if (Session["email"] == null)
@@ -54,7 +55,7 @@
                                             }
                                             else
                                             {
-                                                @Session["name"]<br>@Html.ActionLink("Shkycu", "Signout", "Identity")<br>@Html.ActionLink("Ndrysho te dhenat tua", "ChangePassword", "Identity")
+                                            <p style="color:white;padding:7px;">@Session["name"]<span>-@Session["Role"]</span></p> @Html.ActionLink("Shkycu", "Signout", "Identity")<br>@Html.ActionLink("Ndrysho te dhenat tua", "ChangePassword", "Identity")
                                             }
                                         </div>
                                     </div>
@@ -68,6 +69,11 @@
                                                     @if (Session["role"] != null && (Role)Session["role"] == Role.Supervisor)
                                                     {
                                                         <li>@Html.ActionLink("Punonjes", "Index", "Identity")</li>
+                                                    }
+                                                    @if (Session["role"] != null)
+                                                    {
+                                                        <li>@Html.ActionLink("Klientela", "Clients", "Payment")</li>
+                                                        <li>@Html.ActionLink("Rezervimet", "Index", "Reservation")</li>
                                                     }
                                                 </ul>
                                             </nav>
@@ -99,6 +105,14 @@
             </div>
         </div>
     </div>
+    <style>
+        tfoot input {
+            width: 100%;
+            padding: 3px;
+            box-sizing: border-box;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
 </head>
 @RenderBody()
 <footer>
@@ -147,6 +161,35 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $(".date-picker").datepicker();
+    });
+</script>
+<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Setup - add a text input to each footer cell
+        $('#example tfoot th').each(function () {
+            var title = $(this).text();
+            $(this).html('<input type="text" placeholder="' + title + '" />');
+        });
+
+        // DataTable
+        var table = $('#example').DataTable({
+            initComplete: function () {
+                // Apply the search
+                this.api().columns().every(function () {
+                    var that = this;
+
+                    $('input', this.footer()).on('keyup change clear', function () {
+                        if (that.search() !== this.value) {
+                            that
+                                .search(this.value)
+                                .draw();
+                        }
+                    });
+                });
+            }
+        });
+
     });
 </script>
 </html>

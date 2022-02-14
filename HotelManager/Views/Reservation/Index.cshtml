@@ -1,94 +1,104 @@
 ﻿@model IEnumerable<HotelManager.Models.ReservationDetails>
-
+@using HotelManager.Models
 @{
     ViewBag.Title = "Index";
 }
 
+@if (Session["role"] != null)
+{
+    if ((Role)Session["role"] == Role.Supervisor || (Role)Session["role"] == Role.Manager)
+    {
+        <body>
+            <table id="example" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>
+                            Referenca
+                        </th>
+                        <th>
+                            Numri i dhomes
+                        </th>
+                        <th>
+                            Data e mberritjes
+                        </th>
+                        <th>
+                            Data e largimit
+                        </th>
+                        <th>
+                            Kosto
+                        </th>
+                        <th>
+                            Klienti
+                        </th>
+                        <th>
+                            Numri i kartes
+                        </th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>
+                            Referenca
+                        </th>
+                        <th>
+                            Numri i dhomes
+                        </th>
+                        <th>
+                            Data e mberritjes
+                        </th>
+                        <th>
+                            Data e largimit
+                        </th>
+                        <th>
+                            Kosto
+                        </th>
+                        <th>
+                            Klienti
+                        </th>
+                        <th>
+                            Numri i kartes
+                        </th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.reservationReference)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.roomNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.arrivalDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.departionDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.moneyPaid)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.cardHolder)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.cardNumber)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
 
-<p>
-    <input type="text" id="cardholder" class="form-control" placeholder="Emri i klientit..." />
-    <input type="text" id="room" class="form-control" placeholder="Numri i dhomes..."/>
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.reservationReference)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.roomNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.arrivalDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.departionDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.moneyPaid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cardHolder)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cardNumber)
-        </th>
-    </tr>
+            </table>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.reservationReference)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.roomNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.arrivalDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.departionDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.moneyPaid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cardHolder)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cardNumber)
-        </td>
-    </tr>
+        </body>
+    }
+    else
+    {
+        <div class="alert alert-danger">Ju nuk keni akses ketu!</div>
+    }
 }
-
-</table>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $("#room").on("keyup", function () {
-        var txtenter = $(this).val();
-        $("table tr").each(function (results) {
-            if (results !== 0) {
-                var id = $(this).find("td:nth-child(2)").text();
-                if (id.indexOf(txtenter) !== 0 && id.toLowerCase().indexOf(txtenter.toLowerCase()) < 0) {
-                    $(this).hide();
-                }
-                else {
-                    $(this).show();
-                }
-            }
-        });
-    });
-    $("#cardholder").on("keyup", function () {
-        var txtenter = $(this).val();
-        $("table tr").each(function (results) {
-            if (results !== 0) {
-                var id = $(this).find("td:nth-child(6)").text();
-                if (id.indexOf(txtenter) !== 0 && id.toLowerCase().indexOf(txtenter.toLowerCase()) < 0) {
-                    $(this).hide();
-                }
-                else {
-                    $(this).show();
-                }
-            }
-        });
-    }); 
-</script>
+else
+{
+    <div class="alert alert-danger">Ju nuk keni akses ketu!</div>
+}

@@ -13,55 +13,79 @@
             <h3 class="alert alert-danger">@ViewBag.ErrorMessage</h3>
         }
         <p>
-            <input type="button" class="btn btn-info" value="Shto punonjes" onclick="location.href='@Url.Action("Create", "Identity")'" />
+            <input type="button" class="btn btn-info" value="Shto punonjes" onclick="location.href='@Url.Action("Register", "Identity")'" />
         </p>
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Surname)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Password)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Role)
-                </th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
-                if (item.Email != Session["email"])
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Surname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Password)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Role)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Surname)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Email)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Password)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Role)
-                        </td>
-                        <td>
-                            <input type="button" class="btn btn-info" style="max-width:20%" value="Ndrysho" onclick="location.href='@Url.Action("Edit", "Identity")'" /> 
-                            <input type="button" class="btn btn-info" style="max-width:20%" value="Fshij" onclick="location.href='@Url.Action("Delete", "Identity")'" />
-                        </td>
-                    </tr>
+                    if (item.Email != Session["email"])
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Surname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Password)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Role)
+                            </td>
+                            <td>
+                                <span class="btn btn-info">@Html.ActionLink("Ndrysho", "Edit", new { id = item.Id })</span>
+                                <span class="btn btn-info">@Html.ActionLink("Ndrysho", "Delete", new { id = item.Id })</span>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Surname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Password)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Role)
+                    </th>
+                </tr>
+            </tfoot>
+            
 
         </table>
     }

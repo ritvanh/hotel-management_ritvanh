@@ -8,7 +8,7 @@
 
 @if (Session["email"] != null)
 {
-    if ((Role)Session["role"] == Role.Supervisor)
+    if ((Role)Session["role"] == Role.Supervisor || (Role)Session["role"] == Role.Manager)
     {
         if (Request.QueryString["message"] != null)
         {
@@ -16,33 +16,50 @@
         }
         if (Model != null)
         {
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.cardHolder)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.cardNumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.expirationDate)
-                </th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
+        <table id="example" class="display" style="width:100%">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.cardHolder)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.cardNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.expirationDate)
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.cardHolder)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.cardNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.expirationDate)
+                    </th>
                 </tr>
-            }
+            </thead>
+            
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cardHolder)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cardNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.expirationDate)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.cardHolder)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.cardNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.expirationDate)
+                    </th>
+                </tr>
+            </tfoot>
 
 
 

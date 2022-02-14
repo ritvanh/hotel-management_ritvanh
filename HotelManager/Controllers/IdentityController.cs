@@ -101,24 +101,8 @@ namespace HotelManager.Controllers
         }
         public ActionResult Edit(int id)
         {
-            if (Person.GetPersonById(id) == null)
-            {
-                var person = Person.GetPersonById(id);
-                if (person == null)
-                {
-                    ViewBag.ErrorMessage = "Ky perdorues nuk ekziston me.";
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return View(person);
-                }
-            }
-            else
-            {
-                ViewBag.ErrorMessage = "Ky perdorues nuk ekziston me.";
-                return RedirectToAction("Index");
-            }
+            var person = Person.GetPersonById(id);
+            return View(person);
         }
         [HttpPost]
         public ActionResult Edit(Person person)

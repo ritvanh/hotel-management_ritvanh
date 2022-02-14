@@ -7,7 +7,7 @@
 <h2>Edit</h2>
 @if (Session["role"] != null)
 {
-    if ((Role)Session["role"] == Role.Manager || (Role)Session["role"] == Role.Supervisor)
+    if ((Role)Session["role"] == Role.Supervisor)
     {
 
         using (Html.BeginForm())
