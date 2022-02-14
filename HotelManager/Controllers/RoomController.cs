@@ -130,6 +130,7 @@ namespace HotelManagement.Controllers
                 }
                 else
                 {
+                    ViewBag.ErrorMessage = "Datat e vendosura jane te zena!";
                     return View(model);
                 }
             }
@@ -163,6 +164,10 @@ namespace HotelManagement.Controllers
             {
                 return View();
             }
+        }
+        public ActionResult RoomPaymentConfirmed(Payment model)
+        {
+            return View(model);
         }
 
     }

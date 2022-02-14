@@ -3,11 +3,21 @@
 @{
     ViewBag.Title = "RoomPaymentConfirmed";
 }
-<h1 style="color:gray;background-color:green;text-align:center;">Rezervimi u krye me sukses!</h1>
-<img src="~/Content/images/tick.png" alt="Alternate Text" />
+<style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 30%;
+    }
+</style>
+<div style="width:700px;margin:auto">
+    <h1 style="color:white;background-color:green;text-align:center;">Rezervimi u krye me sukses!</h1>
+    <img class="center" src="~/Content/images/tick.png" width="150px" alt="Alternate Text" />
 
-<h3>
-    @Html.DisplayNameFor(model => model.reservationReference)
-</h3>
+    <h3 style="text-align:center;">
+        Referenca: <span>@Model.reservationReference</span>
+    </h3>
+</div>
 
 

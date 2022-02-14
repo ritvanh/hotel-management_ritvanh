@@ -116,61 +116,14 @@
             <div class="our-room-show">
                 <div class="row">
                     <div class="carousel-list">
-                        <div class="col-md-4">
-                            <div class="single-room">
-                                <div class="room-img">
-                                    <a href="#"><img src="@Url.Content("/Content/images/room/room1.jpg")" alt=""></a>
-                                </div>
-                                <div class="room-desc">
-                                    <div class="room-name">
-                                        <h3><a href="#">Dhoma Deluxe</a></h3>
-                                    </div>
-                                    <div class="room-rent">
-                                        <h5>€ 200 / <span>Nata</span></h5>
-                                    </div>
-                                    <div class="room-book">
-                                        <a href="#">Rezervo</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="single-room">
-                                <div class="room-img">
-                                    <a href="#"><img src="@Url.Content("/Content/images/room/room2.jpg")" alt=""></a>
-                                </div>
-                                <div class="room-desc">
-                                    <div class="room-name">
-                                        <h3><a href="#">Dhoma "Basic"</a></h3>
-                                    </div>
-                                    <div class="room-rent">
-                                        <h5>€ 100 / <span>Nata</span></h5>
-                                    </div>
-                                    <div class="room-book">
-                                        <a href="#">Rezervo</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="single-room">
-                                <div class="room-img">
-                                    <a href="#"><img src="@Url.Content("/Content/images/room/room3.jpg")" alt=""></a>
-                                </div>
-                                <div class="room-desc">
-                                    <div class="room-name">
-                                        <h3><a href="#">Dhoma 3</a></h3>
-                                    </div>
-                                    <div class="room-rent">
-                                        <h5>€ 150 / <span>Nata</span></h5>
-                                    </div>
-                                    <div class="room-book">
-                                        <a href="#">Rezervo</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @Html.Partial("_RoomShared",Room.GetRooms()[0])
+                        @for (int i = 0; i < Room.GetRooms().Count; i++)
+                        {
+                            if (i == 3)
+                            {
+                                break;
+                            }
+                            @Html.Partial("_RoomShared", Room.GetRooms()[i])
+                        }
                     </div>
                 </div>
             </div>
