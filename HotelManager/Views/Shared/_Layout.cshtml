@@ -65,7 +65,10 @@
                                                 <ul>
                                                     <li>@Html.ActionLink("Kryefaqe", "Index", "Home")</li>
                                                     <li>@Html.ActionLink("Dhomat", "Index", "Room")</li>
+                                                    @if (Session["role"] == null)
+                                                    {
                                                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                                                    }
                                                     @if (Session["role"] != null && (Role)Session["role"] == Role.Supervisor)
                                                     {
                                                         <li>@Html.ActionLink("Punonjes", "Index", "Identity")</li>

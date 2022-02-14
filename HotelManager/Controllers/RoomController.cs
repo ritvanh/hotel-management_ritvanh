@@ -81,6 +81,21 @@ namespace HotelManagement.Controllers
         {
             try
             {
+                if(room.UploadImage != null)
+                {
+                    var fileName = "~/Content/images/room/" + Guid.NewGuid() + "_" + room.UploadImage.FileName;
+                    room.photoPath = fileName;
+                    try
+                    {
+                        room.UploadImage.SaveAs(Server.MapPath(fileName));
+                    }
+                    catch { }
+                }
+                else
+                {
+                    String path = Room.GetRoomByNumber(room.roomNumber).photoPath;
+                    room.photoPath = path;
+                }
                 // TODO: Add update logic here
                 Room.UpdateRoom(room);
                 return RedirectToAction("Index");

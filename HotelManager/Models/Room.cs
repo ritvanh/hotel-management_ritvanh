@@ -140,7 +140,7 @@ namespace HotelManagement.Models
                 using (SqlConnection con = new SqlConnection(Tools.ConnectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand($"UPDATE Rooms SET roomNumber={room.roomNumber}, roomName='{room.roomName}', adultCap={room.adultCap}, childrenCap={room.childrenCap}, " +
-                        $"basePrice={room.basePrice}, specialPrice={room.specialPrice}, luxuryIndex={room.luxuryIndex} WHERE roomNumber={room.roomNumber}", con))
+                        $"basePrice={room.basePrice}, specialPrice={room.specialPrice}, luxuryIndex={room.luxuryIndex}, photoPath='{room.photoPath}' WHERE roomNumber={room.roomNumber}", con))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
                         con.Open();
