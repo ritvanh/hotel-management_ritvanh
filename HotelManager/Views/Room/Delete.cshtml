@@ -4,18 +4,16 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
 @if (Session["role"] != null)
 {
     if ((Role)Session["role"] == Role.Supervisor)
     {
-        <h3>Are you sure you want to delete this?</h3>
+        <h3>A jeni i sigurte per fshirjen?</h3>
         <div>
-            <h4>Room</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.roomNumber)
+                    Numri i dhomes
                 </dt>
 
                 <dd>
@@ -23,7 +21,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.roomName)
+                    Emertimi
                 </dt>
 
                 <dd>
@@ -31,7 +29,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.adultCap)
+                    Kapaciteti i te rriturve
                 </dt>
 
                 <dd>
@@ -39,7 +37,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.childrenCap)
+                    Kapaciteti i femijeve
                 </dt>
 
                 <dd>
@@ -47,7 +45,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.basePrice)
+                    Cmimi baze
                 </dt>
 
                 <dd>
@@ -55,7 +53,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.specialPrice)
+                    Cmimi gjate sezonit
                 </dt>
 
                 <dd>
@@ -63,7 +61,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.luxuryIndex)
+                    Indeksi i luksit
                 </dt>
 
                 <dd>

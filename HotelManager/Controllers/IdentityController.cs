@@ -59,20 +59,28 @@ namespace HotelManager.Controllers
         [HttpPost]
         public ActionResult Register(PersonAddRequest model)
         {
-            if (Person.GetPersonByEmail(model.Email) == null)
+            if (ModelState.IsValid)
             {
-                if (Person.Register(model))
+                if (Person.GetPersonByEmail(model.Email) == null)
                 {
-                    return RedirectToAction("Index", "Home");
+                    if (Person.Register(model))
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        return View(model);
+                    }
                 }
                 else
                 {
+                    ViewBag.ErrorMessage = "Ekziston nje tjeter perdorues me kete email.";
                     return View(model);
                 }
             }
             else
             {
-                ViewBag.ErrorMessage = "Ekziston nje tjeter perdorues me kete email.";
+                ViewBag.ErrorMessage = "Keni lene fusha bosh!";
                 return View(model);
             }
         }
@@ -115,12 +123,20 @@ namespace HotelManager.Controllers
         [HttpPost]
         public ActionResult Edit(Person person)
         {
-            if (Person.UpdatePerson(person))
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                if (Person.UpdatePerson(person))
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(person);
+                }
             }
             else
             {
+                ViewBag.ErrorMessage = "Keni lene fusha bosh!";
                 return View(person);
             }
         }

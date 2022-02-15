@@ -12,6 +12,7 @@ namespace HotelManager.Models
     public class Payment
     {
         [Display(Name = "Referenca")]
+        [Required]
         public String reservationReference { get; set; }
         [Display(Name = "Mbartesi")]
         [Required(ErrorMessage = "Kerkohet vlere patjeter per poseduesin")]

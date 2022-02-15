@@ -69,6 +69,10 @@
             <input type="submit" value="Krijo" class="btn btn-info" />
         </div>
     </div>
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <h4 class="alert alert-danger" style="text-align:center">@ViewBag.ErrorMessage</h4>
+    }
 </div>
                 }
             }

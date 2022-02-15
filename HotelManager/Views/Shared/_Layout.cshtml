@@ -68,6 +68,7 @@
                                                     @if (Session["role"] == null)
                                                     {
                                                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                                                    <li>@Html.ActionLink("Rreth Nesh", "About", "Home")</li>
                                                     }
                                                     @if (Session["role"] != null && (Role)Session["role"] == Role.Supervisor)
                                                     {

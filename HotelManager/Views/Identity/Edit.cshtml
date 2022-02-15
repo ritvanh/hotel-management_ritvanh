@@ -68,7 +68,10 @@
         <div class="alert alert-danger">Duhet te kyceni si fillim</div>
     }
 }
-
+@if (ViewBag.ErrorMessage != null)
+{
+    <h4 class="alert alert-danger" style="text-align:center">@ViewBag.ErrorMessage</h4>
+}
 <div>
     <input type="button" class="btn btn-info" value="Ktheu te lista" onclick="location.href='@Url.Action("Index", "Identity")'" />
     <br />

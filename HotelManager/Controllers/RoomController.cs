@@ -49,17 +49,35 @@ namespace HotelManagement.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
-                var fileName = "~/Content/images/room/" + Guid.NewGuid() + "_" + room.UploadImage.FileName;
-                room.photoPath = fileName;
-                if (Room.InsertRoom(room))
+                if (ModelState.IsValid)
                 {
-                    try
+                    // TODO: Add insert logic here
+                    while (room.UploadImage == null)
                     {
-                        room.UploadImage.SaveAs(Server.MapPath(fileName));
+                        ViewBag.ErrorMessage = "Ju lutem jepni imazhin!";
+                        return View(room);
                     }
-                    catch { }
-                    return RedirectToAction("Index");
+                    var fileName = "~/Content/images/room/" + Guid.NewGuid() + "_" + room.UploadImage.FileName;
+                    room.photoPath = fileName;
+                    if (Room.InsertRoom(room))
+                    {
+                        try
+                        {
+                            room.UploadImage.SaveAs(Server.MapPath(fileName));
+                        }
+                        catch { }
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.ErrorMessage = "Me shume mundesi dhoma ekziston.Kontrolloni fushat!";
+                        return View(room);
+                    }
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Keni lene fusha bosh!";
+                    return View(room);
                 }
             }
             catch
@@ -72,7 +90,13 @@ namespace HotelManagement.Controllers
         // GET: Room/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(Room.GetRoomByNumber(id));
+            try
+            {
+                return View(Room.GetRoomByNumber(id));
+            }catch(Exception ex)
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: Room/Edit/5
@@ -81,28 +105,36 @@ namespace HotelManagement.Controllers
         {
             try
             {
-                if(room.UploadImage != null)
+                if (ModelState.IsValid)
                 {
-                    var fileName = "~/Content/images/room/" + Guid.NewGuid() + "_" + room.UploadImage.FileName;
-                    room.photoPath = fileName;
-                    try
+                    if (room.UploadImage != null)
                     {
-                        room.UploadImage.SaveAs(Server.MapPath(fileName));
+                        var fileName = "~/Content/images/room/" + Guid.NewGuid() + "_" + room.UploadImage.FileName;
+                        room.photoPath = fileName;
+                        try
+                        {
+                            room.UploadImage.SaveAs(Server.MapPath(fileName));
+                        }
+                        catch { }
                     }
-                    catch { }
+                    else
+                    {
+                        String path = Room.GetRoomByNumber(room.roomNumber).photoPath;
+                        room.photoPath = path;
+                    }
+                    // TODO: Add update logic here
+                    Room.UpdateRoom(room);
+                    return RedirectToAction("Index");
                 }
                 else
                 {
-                    String path = Room.GetRoomByNumber(room.roomNumber).photoPath;
-                    room.photoPath = path;
+                    ViewBag.ErrorMessage = "Keni lene fusha bosh!";
+                    return View(room);
                 }
-                // TODO: Add update logic here
-                Room.UpdateRoom(room);
-                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index");
             }
         }
 
@@ -139,15 +171,31 @@ namespace HotelManagement.Controllers
             try
             {
                 // TODO: Add insert logic here
-                if (Reservation.Add(model))
+                if (ModelState.IsValid)
                 {
-                    return RedirectToAction("PayReservation",new {reference = model.reservationReference});
+                    if(model.arrivalDate > model.departionDate)
+                    {
+                        ViewBag.ErrorMessage = "Data e largimit nuk mund te jete me e vogel se data e mberritjes!";
+                        return View(model);
+                    }
+                    else
+                    {
+                        if (Reservation.Add(model))
+                        {
+                            return RedirectToAction("PayReservation", new { reference = model.reservationReference });
+                        }
+                        else
+                        {
+                            ViewBag.ErrorMessage = "Datat e dhena jante te zena";
+                            return View(model);
+                        }
+                    }
                 }
                 else
                 {
-                    ViewBag.ErrorMessage = "Datat e vendosura jane te zena!";
+                    ViewBag.ErrorMessage = "Keni lene fusha bosh";
                     return View(model);
-                }
+                } 
             }
             catch
             {
@@ -165,14 +213,22 @@ namespace HotelManagement.Controllers
         public ActionResult PayReservation(Payment model)
         {
             try {
-                if (Payment.Add(model))
+                if (ModelState.IsValid)
                 {
-                    Reservation.UpdateStatus(model.reservationReference);
-                    return RedirectToAction("RoomPaymentConfirmed",model);
+                    if (Payment.Add(model))
+                    {
+                        Reservation.UpdateStatus(model.reservationReference);
+                        return RedirectToAction("RoomPaymentConfirmed", model);
+                    }
+                    else
+                    {
+                        return View(model);
+                    }
                 }
                 else
                 {
-                    return View(model) ;
+                    ViewBag.ErrorMessage = "Keni lene fusha bosh!";
+                    return View(model);
                 }
             }
             catch

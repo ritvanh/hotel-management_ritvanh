@@ -4,16 +4,23 @@ using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
 using HotelManagement;
+using System.ComponentModel.DataAnnotations;
+
 namespace HotelManagement.Models
 {
     public class Room
     {
+        [Required]
         public int roomNumber { get; set; }
+        [Required]
         public string roomName { get; set; }
+        [Required]
         public int adultCap { get; set; }
+        [Required]
         public int childrenCap { get; set; }
         public double basePrice { get; set; }
         public double specialPrice { get; set; }
+        [Required]
         public int luxuryIndex { get; set; }
         public string photoPath { get; set; }
         public HttpPostedFileBase UploadImage { get; set; }

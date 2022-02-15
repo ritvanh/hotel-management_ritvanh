@@ -24,7 +24,7 @@ namespace HotelManager.Models
             {
                 using(SqlConnection con = new SqlConnection(Tools.ConnectionString))
                 {
-                    using(SqlCommand cmd = new SqlCommand($"SELECT Reservations.reservationReference, Reservations.roomNumber, Reservations.arrivalDate, Reservations.departionDate, Reservations.moneyPaid, Payments.cardHolder, Payments.cardNumber FROM Reservations JOIN Payments ON Reservations.reservationReference=Payments.reservationReference", con))
+                    using(SqlCommand cmd = new SqlCommand($"SELECT Reservations.reservationReference, Reservations.roomNumber, Reservations.arrivalDate, Reservations.departionDate, Reservations.moneyPaid, Payments.cardHolder, Payments.cardNumber FROM Reservations JOIN Payments ON Reservations.reservationReference=Payments.reservationReference WHERE status=1", con))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
                         con.Open();

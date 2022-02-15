@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -12,7 +13,9 @@ namespace HotelManager.Models
         public String reservationReference { get; set; }
         public int status { get; set; }
         public int roomNumber { get; set; }
+        [Required]
         public DateTime arrivalDate { get; set; }
+        [Required]
         public DateTime departionDate { get; set; }
         public decimal moneyPaid { get; set; }
 
